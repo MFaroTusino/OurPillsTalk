@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/Users/Elliott/Documents/Semester 1 2015/COMP355 Project/OurPillsTalk/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.1.1/libs/internal_impl-22.1.1.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="9e070ad32b2700b0343e8e0cccc437733d91ba3a">
+        <dex dex="/Users/Elliott/Documents/Semester 1 2015/COMP355 Project/OurPillsTalk/app/build/intermediates/pre-dexed/debug/internal_impl-22.1.1-362360d0ba41f7fc3b199866d0de435502343faf.jar" />
+    </item>
+    <item
+        jar="/Users/Elliott/Documents/Semester 1 2015/COMP355 Project/OurPillsTalk/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.1.1/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="a3ff3c506644c820eb2bdf06e8339f72be578551">
+        <dex dex="/Users/Elliott/Documents/Semester 1 2015/COMP355 Project/OurPillsTalk/app/build/intermediates/pre-dexed/debug/classes-2b161dcf5a2e9bc9af6f496293172fc20bc5fea6.jar" />
+    </item>
+    <item
+        jar="/Users/Elliott/.gradle/caches/modules-2/files-2.1/com.googlecode.json-simple/json-simple/1.1/5e303a03d04e6788dddfa3655272580ae0fc13bb/json-simple-1.1.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="5e303a03d04e6788dddfa3655272580ae0fc13bb">
+        <dex dex="/Users/Elliott/Documents/Semester 1 2015/COMP355 Project/OurPillsTalk/app/build/intermediates/pre-dexed/debug/json-simple-1.1-e41279be4ae68b9392823126441d71c50b664491.jar" />
+    </item>
+    <item
+        jar="/Users/Elliott/Documents/Semester 1 2015/COMP355 Project/OurPillsTalk/app/build/intermediates/exploded-aar/me.dm7.barcodescanner/zbar/1.7/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="a9bc68509fb96b8c2580271ead3ae65ad18f069c">
+        <dex dex="/Users/Elliott/Documents/Semester 1 2015/COMP355 Project/OurPillsTalk/app/build/intermediates/pre-dexed/debug/classes-f69f1805d08c470a1282d83c72cd6bca0feeed4f.jar" />
+    </item>
+    <item
+        jar="/Users/Elliott/Documents/Semester 1 2015/COMP355 Project/OurPillsTalk/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.1.1/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="c95ba8152923e4872e86a82cfcba9a51c0214328">
+        <dex dex="/Users/Elliott/Documents/Semester 1 2015/COMP355 Project/OurPillsTalk/app/build/intermediates/pre-dexed/debug/classes-c42604a2645705d5fdf77552d13e3e9b5b5bbaf8.jar" />
+    </item>
+    <item
+        jar="/Users/Elliott/Documents/Semester 1 2015/COMP355 Project/OurPillsTalk/app/build/intermediates/exploded-aar/me.dm7.barcodescanner/core/1.7/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="068eb5c44888c4d2b804ecd5c020ef83675d956d">
+        <dex dex="/Users/Elliott/Documents/Semester 1 2015/COMP355 Project/OurPillsTalk/app/build/intermediates/pre-dexed/debug/classes-d77151309797234452264476d90662d0e9c7dd82.jar" />
+    </item>
+    <item
+        jar="/Users/Elliott/.gradle/caches/modules-2/files-2.1/com.memetix/microsoft-translator-java-api/0.6.2/2b9686e4d86b1565f3fa7a5060246b40ba96e447/microsoft-translator-java-api-0.6.2.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="2b9686e4d86b1565f3fa7a5060246b40ba96e447">
+        <dex dex="/Users/Elliott/Documents/Semester 1 2015/COMP355 Project/OurPillsTalk/app/build/intermediates/pre-dexed/debug/microsoft-translator-java-api-0.6.2-08b463d22ad416ea78cb303b1294d7ab729d8b0f.jar" />
+    </item>
+    <item
+        jar="/Users/Elliott/Documents/Semester 1 2015/COMP355 Project/OurPillsTalk/app/build/intermediates/exploded-aar/me.dm7.barcodescanner/zbar/1.7/libs/zbar.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="7bbdf7ba57a8a157c0cad51e455609c70887812e">
+        <dex dex="/Users/Elliott/Documents/Semester 1 2015/COMP355 Project/OurPillsTalk/app/build/intermediates/pre-dexed/debug/zbar-7c1ce736e8a5e23f9c174d52ab503790ce871752.jar" />
+    </item>
+    <item
+        jar="/Users/Elliott/Documents/Semester 1 2015/COMP355 Project/OurPillsTalk/app/libs/commons-io-2.4.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="b1b6ea3b7e4aa4f492509a4952029cd8e48019ad">
+        <dex dex="/Users/Elliott/Documents/Semester 1 2015/COMP355 Project/OurPillsTalk/app/build/intermediates/pre-dexed/debug/commons-io-2.4-498e8646bb6054d91b5c785f82c67c1203cc08f8.jar" />
+    </item>
+    <item
+        jar="/Users/Elliott/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/22.1.1/support-annotations-22.1.1.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="01d051a6bfb1218b1db2d3a5af0480ac2c25c42a">
+        <dex dex="/Users/Elliott/Documents/Semester 1 2015/COMP355 Project/OurPillsTalk/app/build/intermediates/pre-dexed/debug/support-annotations-22.1.1-28431ce2d265677b480ac7a89ca38c1f113d7a78.jar" />
+    </item>
+
+</items>

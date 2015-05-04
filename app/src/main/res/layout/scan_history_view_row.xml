@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:theme="@style/AppBaseTheme"
+    android:focusable="false"
+    android:focusableInTouchMode="false">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:gravity="right"
+        android:baselineAligned="true"
+        android:clickable="true"
+        android:layout_margin="1sp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="100sp"
+            android:text="File Body"
+            android:id="@+id/scanPreviewViewText"
+            android:layout_gravity="center_horizontal"
+            android:clickable="true"
+            android:minWidth="500dp"
+            android:textSize="25sp"
+            android:background="?android:attr/selectableItemBackground"
+            android:layout_weight="4" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/deleteButton"
+            android:src="@drawable/abc_ic_clear_mtrl_alpha"
+            android:layout_gravity="center|right"
+            android:background="#ffff7579" />
+    </LinearLayout>
+
+</LinearLayout>

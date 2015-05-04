@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:theme="@style/AppBaseTheme">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:id="@+id/lastScanScrollView"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="10"
+        android:layout_margin="1sp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="You currently have no last scan"
+            android:id="@+id/lastScanTextView"
+            android:textSize="40sp"
+            android:gravity="center"
+            android:padding="1sp" />
+    </ScrollView>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_margin="1dp">
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="Stop"
+            android:id="@+id/stopButton"
+            android:layout_weight="1"
+            android:layout_margin="1sp" />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="Play"
+            android:id="@+id/playButton"
+            android:layout_weight="1"
+            android:layout_margin="1sp" />
+    </LinearLayout>
+
+</LinearLayout>

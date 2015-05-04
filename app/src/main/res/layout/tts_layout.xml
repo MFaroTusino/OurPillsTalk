@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content" 
+    android:orientation="vertical">
+
+     <Button
+         android:id="@+id/ButtonPlayStop"
+         android:layout_width="fill_parent"
+          android:layout_height="110dp"
+         android:text="@string/ButtonTextPlayStop"
+         android:textColor="@android:color/black"
+         android:textSize="60sp"
+         android:textStyle="bold" />
+
+     	<!-- was android:textSize="80dp" -->
+    <TextView
+        android:id="@+id/TextViewResultLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.03"
+        android:text="@string/TextViewText"
+        android:textColor="@android:color/black" />
+
+    <EditText
+        android:id="@+id/EditTextResult"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.03"
+        android:inputType=""
+        android:hint=""
+        android:textColor="@android:color/black" />
+</LinearLayout>
