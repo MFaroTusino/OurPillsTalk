@@ -27,35 +27,38 @@
         <EditText
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPersonName"
+            android:inputType="textCapWords|textPersonName"
             android:ems="10"
             android:id="@+id/nameEditText"
             android:layout_gravity="bottom"
             android:textSize="25sp"
-            android:hint="Full name" />
+            android:hint="Full name"
+            android:capitalize="words" />
 
         <EditText
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPostalAddress"
+            android:inputType="textCapWords|textPostalAddress"
             android:ems="10"
             android:id="@+id/cityEditText"
             android:textSize="25sp"
-            android:hint="City" />
+            android:hint="City"
+            android:capitalize="words" />
 
         <EditText
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPostalAddress"
+            android:inputType="textCapWords|textPostalAddress"
             android:ems="10"
             android:id="@+id/suburbEditText"
             android:textSize="25sp"
-            android:hint="Suburb" />
+            android:hint="Suburb"
+            android:capitalize="words" />
 
         <EditText
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:inputType="phone"
+            android:inputType="phone|number"
             android:ems="10"
             android:id="@+id/emrgencyContactEditText"
             android:textSize="25sp"
@@ -65,31 +68,9 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:id="@+id/currentMedicationEditText"
-            android:inputType="text"
+            android:inputType="text|textCapWords"
             android:textSize="25dp"
             android:hint="Current medications" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:text="Our Pills Talk"
-            android:id="@+id/textView6"
-            android:layout_gravity="center_horizontal"
-            android:layout_weight="1" />
-
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="0dp"
-            android:text="Disclaimer Information..."
-            android:id="@+id/disclaimerTextView"
-            android:layout_weight="4" />
-
     </LinearLayout>
 
     <RelativeLayout
@@ -99,12 +80,26 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="OK"
+            android:text="Save Details"
             android:id="@+id/userInfoButton"
             android:layout_gravity="center_horizontal|bottom"
             android:layout_weight="1"
+            android:layout_marginRight="70dp"
+            android:layout_marginEnd="70dp"
+            android:layout_alignTop="@+id/privButton"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Privacy Policy"
+            android:id="@+id/privButton"
             android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true" />
+            android:layout_toLeftOf="@+id/userInfoButton"
+            android:layout_toStartOf="@+id/userInfoButton"
+            android:clickable="true"
+            android:hint="Privacy Policy" />
     </RelativeLayout>
 
 </LinearLayout>
