@@ -9,12 +9,16 @@ import android.widget.Toast;
 import com.memetix.mst.language.Language;
 
 import org.apache.commons.io.IOUtils;
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
+import org.xmlpull.v1.XmlPullParserFactory;
 
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.StringReader;
 import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -214,10 +218,25 @@ public class FileIO {
 
         if(stripScanName) {
             fileData = fileData.split("_", 2)[1];
-            return fileData;
-        } else {
-            return fileData;
         }
+        String[] splitFileData = fileData.split("\n\n", 2);
+        String header = splitFileData[0];
+        String body = splitFileData[1];
+
+
+
+        String processedBody = "";
+
+        if(body.startsWith("<prescription>")) {
+            processedBody =  parseXMLQRScan(body);
+            //Toast.makeText(context, body, Toast.LENGTH_SHORT).show();
+        } else {
+            processedBody = body;
+        }
+
+        return (header + "\n\n" + processedBody);
+
+
     }
 
     public static void deleteScanIndex(Context context) {
@@ -696,8 +715,69 @@ public class FileIO {
             e.printStackTrace();
         }
         String fileBody = fileData.split("\n\n", 2)[1];
-        return fileBody;
+
+        if(fileBody.startsWith("<prescription>")) {
+            return parseXMLQRScan(fileBody);
+        } else {
+            return fileBody;
+        }
     }
+
+    /**
+     * XML format:
+     *<prescription>
+     *  <pat_name></>
+     *  <drug_name></>
+     *  <exp_instruc></>
+     *  <script_id></>
+     *  <pharm_name></>
+     *<prescription/>
+     *
+     * Returns a formatted string containing patient name, drug name and instructions
+     * @param xml
+     */
+    private static String parseXMLQRScan(String xml) {
+        String patName = "";
+        String drugName = "";
+        String expInstruc = "";
+        String scriptId = "";
+        String pharmName = "";
+
+
+        try {
+            XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
+            factory.setNamespaceAware(true);
+            XmlPullParser parser = factory.newPullParser();
+            parser.setInput(new StringReader(xml));
+            while(parser.getEventType()!= XmlPullParser.END_DOCUMENT) {
+                if (parser.getEventType() == XmlPullParser.START_TAG) {
+                    if (parser.getName().equals("pat_name")) {
+                        patName = parser.nextText();
+
+                    } else if (parser.getName().equals("drug_name")) {
+                        drugName = parser.nextText();
+
+                    } else if (parser.getName().equals("exp_instruc")) {
+                        expInstruc = parser.nextText();
+
+                    } else if (parser.getName().equals("script_id")) {
+                        scriptId = parser.nextText();
+
+                    } else if (parser.getName().equals("pharm_name")) {
+                        pharmName = parser.nextText();
+                    }
+                }
+                parser.next();
+            }
+        } catch (XmlPullParserException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return drugName.replace("+", " ") + "\n\n" + patName + ".\n" + expInstruc +".";
+    }
+
     /**
      * Prints a toast to screen of the contents of the file name provided
      * and returns the file data as a string.
