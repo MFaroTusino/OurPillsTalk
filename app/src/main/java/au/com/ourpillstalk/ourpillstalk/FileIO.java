@@ -22,6 +22,7 @@ import java.io.StringReader;
 import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.TimeZone;
 
 /**
@@ -35,6 +36,12 @@ public class FileIO {
     public static final String AVAILABLE_LANGUAGES_FILE_NAME = "AVAILABLE_LANGUAGES";
     public static final String AVAILABLE_LANGUAGES_CODES_FILE_NAME = "AVAILABLE_LANGUAGES_CODES";
     public static final String USER_INFORMATION_FILE_NAME = "USER_INFORMATION";
+
+    static final String PAT_NAME = "pat_name";
+    static final String DRUG_NAME = "drug_name";
+    static final String EXP_INSTRUC = "exp_instruc";
+    static final String SCRIPT_ID = "script_id";
+    static final String PHARM_NAME = "pharm_name";
     ////
 
     private static void saveAvailableLanguagesCodes(ArrayList<Language> availableLanguages, Context context) {
@@ -227,8 +234,9 @@ public class FileIO {
 
         String processedBody = "";
 
-        if(body.startsWith("<prescription>")) {
-            processedBody =  parseXMLQRScan(body);
+        if(isPrescriptionScanXML(body)) {
+            HashMap<String, String> parseXml = parseXMLQRScan(body);
+            processedBody = getScanInfoToDisplay(parseXml);
             //Toast.makeText(context, body, Toast.LENGTH_SHORT).show();
         } else {
             processedBody = body;
@@ -716,13 +724,18 @@ public class FileIO {
         }
         String fileBody = fileData.split("\n\n", 2)[1];
 
-        if(fileBody.startsWith("<prescription>")) {
-            return parseXMLQRScan(fileBody);
+        if(isPrescriptionScanXML(fileBody)) {
+            HashMap<String, String> parseXml = parseXMLQRScan(fileBody);
+            return getScanInfoToDisplay(parseXml);
+
         } else {
             return fileBody;
         }
     }
 
+    private static boolean isPrescriptionScanXML(String fileBody) {
+        return fileBody.startsWith("<prescription>");
+    }
     /**
      * XML format:
      *<prescription>
@@ -736,14 +749,8 @@ public class FileIO {
      * Returns a formatted string containing patient name, drug name and instructions
      * @param xml
      */
-    private static String parseXMLQRScan(String xml) {
-        String patName = "";
-        String drugName = "";
-        String expInstruc = "";
-        String scriptId = "";
-        String pharmName = "";
-
-
+    private static HashMap<String,String> parseXMLQRScan(String xml) {
+        HashMap<String, String> prescriptionHashMap = new HashMap<>();
         try {
             XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
             factory.setNamespaceAware(true);
@@ -751,20 +758,19 @@ public class FileIO {
             parser.setInput(new StringReader(xml));
             while(parser.getEventType()!= XmlPullParser.END_DOCUMENT) {
                 if (parser.getEventType() == XmlPullParser.START_TAG) {
-                    if (parser.getName().equals("pat_name")) {
-                        patName = parser.nextText();
+                    if (parser.getName().equals(PAT_NAME)) {
+                        prescriptionHashMap.put(PAT_NAME, parser.nextText());
+                    } else if (parser.getName().equals(DRUG_NAME)) {
+                        prescriptionHashMap.put(DRUG_NAME, parser.nextText());
 
-                    } else if (parser.getName().equals("drug_name")) {
-                        drugName = parser.nextText();
+                    } else if (parser.getName().equals(EXP_INSTRUC)) {
+                        prescriptionHashMap.put(EXP_INSTRUC, parser.nextText());
 
-                    } else if (parser.getName().equals("exp_instruc")) {
-                        expInstruc = parser.nextText();
+                    } else if (parser.getName().equals(SCRIPT_ID)) {
+                        prescriptionHashMap.put(SCRIPT_ID, parser.nextText());
 
-                    } else if (parser.getName().equals("script_id")) {
-                        scriptId = parser.nextText();
-
-                    } else if (parser.getName().equals("pharm_name")) {
-                        pharmName = parser.nextText();
+                    } else if (parser.getName().equals(PHARM_NAME)) {
+                        prescriptionHashMap.put(PHARM_NAME, parser.nextText());
                     }
                 }
                 parser.next();
@@ -774,9 +780,13 @@ public class FileIO {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        return drugName.replace("+", " ") + "\n\n" + patName + ".\n" + expInstruc +".";
+        return prescriptionHashMap;
     }
+
+    private static String getScanInfoToDisplay(HashMap<String, String> parseXml) {
+        return parseXml.get(DRUG_NAME).replace("+", " ") + "\n\n" + parseXml.get(PAT_NAME) + ".\n" + parseXml.get(EXP_INSTRUC) +".";
+    }
+
 
     /**
      * Prints a toast to screen of the contents of the file name provided
