@@ -1,5 +1,6 @@
 package au.com.ourpillstalk.ourpillstalk;
 
+import android.app.DialogFragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -11,7 +12,8 @@ import android.widget.EditText;
  * Created by Elliott on 21/04/15.
  */
 public class UserInfoActivity extends AppCompatActivity implements View.OnClickListener{
-    Button userInfoButton;
+    Button userInfoButton, privButton;
+
     EditText nameEditText, cityEditText, suburbEditText, emergencyNumberEditText, medicationsEditText;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,12 +29,17 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
         emergencyNumberEditText = (EditText) findViewById(R.id.emrgencyContactEditText);
         medicationsEditText = (EditText) findViewById(R.id.currentMedicationEditText);
         userInfoButton = (Button) findViewById(R.id.userInfoButton);
+        privButton = (Button) findViewById(R.id.privButton);
         setOnClickListeners();
     }
 
     private void setOnClickListeners() {
         userInfoButton.setOnClickListener(this);
+        privButton.setOnClickListener(this);
     }
+
+
+
 
     @Override
     public void onClick(View view) {
@@ -43,6 +50,11 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
                 FileIO.saveUserInformation(userInfo, getApplicationContext());
                 Intent showMain = new Intent(this, MainActivity.class);
                 startActivity(showMain);
+                break;
+            }
+            case(R.id.privButton): {
+                DialogFragment privDialog = new PrivacyPolicyDialog();
+                    privDialog.show(getFragmentManager(), "privacy");
                 break;
             }
 
