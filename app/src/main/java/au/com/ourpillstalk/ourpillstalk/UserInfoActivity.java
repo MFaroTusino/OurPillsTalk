@@ -54,7 +54,8 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
                 break;
             }
             case(R.id.privButton): {
-                DialogFragment privDialog = new PrivacyPolicyDialog();
+                DialogFragment privDialog = new CustomDialog();
+                CustomDialog.setInstance("privacy");
                     privDialog.show(getFragmentManager(), "privacy");
                 break;
             }
