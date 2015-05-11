@@ -38,5 +38,11 @@
     <string name="title_activity_help_me">Help_me</string>
     <string name="title_activity_sub_scan_history">Sub_scan_history</string>
     <string name="action_search">search</string>
+    <string name="OK">OK</string>
+    <string name="privPolicy">All data gathered remains on device and will not be stored outside of the device. Data may be sent to a translation service where said service may store that data for the purpose of providing a translation.</string>
+    <string name="privDialogTitle">Privacy Policy</string>
+    <string name="eraseTitle">Confirm Erase</string>
+    <string name="eraseUserInfo">Are you sure you wish to erase user info?</string>
+    <string name="eraseScanInfo">Are you sure you wish to erase scan history?</string>
 
 </resources>

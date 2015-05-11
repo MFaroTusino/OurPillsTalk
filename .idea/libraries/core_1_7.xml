@@ -1,8 +1,13 @@
 <component name="libraryTable">
   <library name="core-1.7">
     <CLASSES>
+<<<<<<< HEAD
       <root url="file://$PROJECT_DIR$/app/build/intermediates/exploded-aar/me.dm7.barcodescanner/core/1.7/res" />
       <root url="jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/me.dm7.barcodescanner/core/1.7/classes.jar!/" />
+=======
+      <root url="jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/me.dm7.barcodescanner/core/1.7/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/app/build/intermediates/exploded-aar/me.dm7.barcodescanner/core/1.7/res" />
+>>>>>>> master
     </CLASSES>
     <JAVADOC />
     <SOURCES />
