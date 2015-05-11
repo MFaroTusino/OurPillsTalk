@@ -1,8 +1,5 @@
 package au.com.ourpillstalk.ourpillstalk;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -12,6 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.ToggleButton;
+import android.app.DialogFragment;
 
 import com.memetix.mst.language.Language;
 import com.memetix.mst.translate.Translate;
@@ -22,6 +20,7 @@ import java.util.Map;
 
 /**
  * Created by Elliott on 29/04/15.
+ * Modified by MichaelFaro-Tusino on 8/05/15.
  */
 public class SettingsActivity extends AppCompatActivity implements View.OnClickListener {
     Spinner languageChoiceSpinner;
@@ -101,44 +100,15 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
                 break;
             }
             case (R.id.deleteAllScansButton): {
-
-                AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setMessage("Are you sure you want to erase your scan history?");
-                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        FileIO.deleteScanIndex(getApplicationContext());
-                    }
-                });
-                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-
-                    }
-                });
-
-                AlertDialog dialog = builder.create();
-                dialog.show();
+                DialogFragment deleteScansDialog = new CustomDialog();
+                CustomDialog.setInstance("scans");
+                deleteScansDialog.show(getFragmentManager(), "deleteScans");
                 break;
             }
             case (R.id.resetUserInfoButton): {
-                AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setMessage("Are you sure you want to reset user information?");
-                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        SharedPreferencesIO.setNewUser(true, getApplicationContext());
-                        Intent showInfoActivity = new Intent(getApplicationContext(), UserInfoActivity.class);
-                        showInfoActivity.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-                        startActivity(showInfoActivity);
-                    }
-                });
-                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-
-                    }
-                });
-
-                AlertDialog dialog = builder.create();
-                dialog.show();
-
+                DialogFragment deleteUserDialog = new CustomDialog();
+                CustomDialog.setInstance("user");
+                deleteUserDialog.show(getFragmentManager(), "eraseUser");
                 break;
             }
         }
