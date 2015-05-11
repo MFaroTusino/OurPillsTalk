@@ -40,7 +40,7 @@ public class ScanHistoryActivity extends AppCompatActivity implements View.OnCli
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitle("Scan History");
+        //setTitle("Scan History");
         setContentView(R.layout.activity_scan_history_new);
         scanListView = (ListView) findViewById(R.id.scanDataListView);
         toggleDuplicates = (ToggleButton) findViewById(R.id.toggleDuplicates);

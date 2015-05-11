@@ -42,7 +42,7 @@
 android1:layout_marginLeft="20dp"
                 android1:layout_centerVertical="true"
                 android1:layout_toRightOf="@+id/back"
-                android1:text="Scan History"
+                android1:text="@string/scanHistory"
                 android1:textSize="24sp" />
 
         </RelativeLayout>

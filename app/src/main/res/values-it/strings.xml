@@ -2,19 +2,19 @@
 <resources>
 
     <string name="app_name">Our Pills Talk</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_settings">Impostazioni</string>
     <string name="lastScan">Last Scan</string>
-    <string name="help_me">Help</string>
+    <string name="help_me">Aiuta</string>
     <string name="scanHistory">Scan History</string>
     <string name="ButtonTextMedOrgAu">CMI Website</string>
     <string name="ButtonTextInstructions">Instructions</string>
     <string name="ButtonTextPause">Pause</string>
-    <string name="ButtonTextPlay">Play</string>
+    <string name="ButtonTextPlay">Gioca</string>
     <string name="ButtonTextPlayPause">Play/Pause</string>
-    <string name="ButtonTextPlayStop">Play/Stop</string>
-    <string name="ButtonTextReplay">Replay</string>
+    <string name="ButtonTextPlayStop">Gioca/Ferma</string>
+    <string name="ButtonTextReplay">Ripeta</string>
     <string name="ButtonTextScan">Scan My Pills</string>
-    <string name="ButtonTextStop">Stop</string>
+    <string name="ButtonTextStop">Ferma</string>
     <string name="ButtonTextChoiceCMIAudio">CMI Audio</string>
     <string name="ButtonTextChoiceCMIPDF">CMI PDF</string>
     <string name="ButtonTextChoiceCMIWebsite">CMI Website</string>
@@ -37,14 +37,13 @@
     <string name="title_activity_settings">Settings</string>
     <string name="title_activity_help_me">Help_me</string>
     <string name="title_activity_sub_scan_history">Sub_scan_history</string>
-    <string name="action_search">Search</string>
+    <string name="action_search">Cerca</string>
     <string name="OK">OK</string>
-    <string name="EmergencyActivity">Emergency</string>
     <string name="privPolicy">All data gathered remains on device and will not be stored outside of the device. Data may be sent to a translation service where said service may store that data for the purpose of providing a translation.</string>
     <string name="privDialogTitle">Privacy Policy</string>
     <string name="eraseTitle">Confirm Erase</string>
     <string name="eraseUserInfo">Are you sure you wish to erase user info?</string>
     <string name="eraseScanInfo">Are you sure you wish to erase scan history?</string>
-    <string name="app_name">Our Pills Talk</string>
+    <string name="EmergencyActivity">Emergenzia</string>
 
 </resources>

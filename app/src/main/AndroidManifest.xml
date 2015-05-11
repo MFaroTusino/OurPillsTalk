@@ -40,7 +40,7 @@
         </activity>
         <activity
             android:name="EmergencyActivity"
-            android:label="EmergencyActivity"
+            android:label="@string/EmergencyActivity"
             android:screenOrientation="portrait"
             android:parentActivityName="MainActivity">
         </activity>
@@ -59,7 +59,7 @@
         </activity>
         <activity
             android:name="ScanHistoryActivity"
-            android:label="ScanHistoryActivity"
+            android:label="@string/scanHistory"
             android:screenOrientation="portrait"
             android:parentActivityName="MainActivity">
         </activity>
