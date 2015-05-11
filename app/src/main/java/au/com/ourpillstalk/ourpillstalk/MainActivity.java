@@ -50,27 +50,6 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
         setOnClickListeners();
     }
 
-    private void loadFakeScans() {
-        FileIO.saveQRScan("Generic drug 1\n\nJohn Smith. Take one tablet in the morning and in the evening, " +
-                "at about the same time each day. Do not exceed this limit.", getApplicationContext());
-        FileIO.saveQRScan("Generic drug 1\n\nJohn Smith. Take one tablet in the morning and in the evening, " +
-                "at about the same time each day. Do not exceed this limit.", getApplicationContext());
-        FileIO.saveQRScan("Strepsil\n\nJohn Smith. Take one tablet in the morning and in the evening, " +
-                "at about the same time each day. Do not exceed this limit.", getApplicationContext());
-        FileIO.saveQRScan("Generic drug\n\nJohn Smith. Take one tablet in the morning and in the evening, " +
-                "at about the same time each day. Do not exceed this limit.", getApplicationContext());
-        FileIO.saveQRScan("Panadol\n\nJohn Smith. Take one tablet in the morning and in the evening, " +
-                "at about the same time each day. Do not exceed this limit.", getApplicationContext());
-
-        FileIO.saveQRScan("Generic drug\n\nJohn Smith. Take one tablet in the morning and in the evening, " +
-                "at about the same time each day. Do not exceed this limit.", getApplicationContext());
-        FileIO.saveQRScan("Generic drug 2\n\nJohn Smith. Take one tablet in the morning and in the evening, " +
-                "at about the same time each day. Do not exceed this limit.", getApplicationContext());
-
-        FileIO.saveQRScan("Generic drug 3\n\nJohn Smith. Take one tablet in the morning and in the evening, " +
-                "at about the same time each day. Do not exceed this limit.", getApplicationContext());
-    }
-
     private void translate() {
         if(!SharedPreferencesIO.getLanguageCode(getApplicationContext()).equals("en")) {
             if(translate != null) {
@@ -197,7 +176,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
                     languageCode = "en";
                 }
 
-                if(languageCode.equals(FileIO.getSavedTranslationLanguageCode(getApplicationContext())) ) {
+                if(languageCode.equals(FileIO.getSavedMainTranslationLanguageCode(getApplicationContext())) ) {
                     translatedText = FileIO.getMainMenuTranslation(getApplicationContext());
 
                 } else if(!hasConnection()) {

@@ -1,8 +1,12 @@
 package au.com.ourpillstalk.ourpillstalk;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.media.AudioManager;
+import android.media.ToneGenerator;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.util.Log;
 import android.view.View;
 
@@ -41,6 +45,10 @@ public class ZBarScannerActivity extends Activity implements ZBarScannerView.Res
     public void handleResult(Result rawResult) {
         // Do something with the result here
         if(rawResult.getBarcodeFormat() == BarcodeFormat.QRCODE) {
+            ToneGenerator tone = new ToneGenerator(AudioManager.STREAM_ALARM, 100);
+            tone .startTone(ToneGenerator.TONE_CDMA_ALERT_CALL_GUARD, 200);
+            Vibrator v = (Vibrator) getApplicationContext().getSystemService(Context.VIBRATOR_SERVICE);
+            v.vibrate(250);
             String scanResult = rawResult.getContents();
             //save scan to file and pass the file name to the Scan Activity (the last scan of the index)
 

@@ -44,6 +44,7 @@ public class ScanActivity extends AppCompatActivity implements View.OnClickListe
         }
         setOnClickListeners();
         translate();
+        startTextToSpeech();
     }
 
     private void setOnClickListeners() {
@@ -52,7 +53,11 @@ public class ScanActivity extends AppCompatActivity implements View.OnClickListe
         stopButton.setOnClickListener(this);
     }
 
-    private void speech() {
+    private void startTextToSpeech() {
+        if(textToSpeech !=null){
+            textToSpeech.stop();
+            textToSpeech.shutdown();
+        }
         textToSpeech = new TextToSpeech(getApplicationContext(), this);
     }
 
@@ -116,7 +121,7 @@ public class ScanActivity extends AppCompatActivity implements View.OnClickListe
                 textToSpeech(scanTextView);
             }
         } else {
-            Toast.makeText(getApplicationContext(), "Text to speech 3", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Text to startTextToSpeech 3", Toast.LENGTH_LONG).show();
             Log.e("TTS", "Initilization Failed!");
         }
 
@@ -166,6 +171,7 @@ public class ScanActivity extends AppCompatActivity implements View.OnClickListe
         }
         protected void onPostExecute(String result) {
             scanTextView.setText(translatedText);
+            startTextToSpeech();
             pDialog.dismiss();
 
         }
@@ -179,11 +185,7 @@ public class ScanActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             }
             case R.id.playButton: {
-                if(textToSpeech !=null){
-                    textToSpeech.stop();
-                    textToSpeech.shutdown();
-                }
-                textToSpeech = new TextToSpeech(getApplicationContext(), this);
+               startTextToSpeech();
                 break;
             }
             case R.id.stopButton: {
