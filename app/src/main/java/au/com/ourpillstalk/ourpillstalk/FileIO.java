@@ -3,34 +3,54 @@ package au.com.ourpillstalk.ourpillstalk;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.memetix.mst.language.Language;
 
 import org.apache.commons.io.IOUtils;
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
+import org.xmlpull.v1.XmlPullParserFactory;
 
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.StringReader;
 import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.TimeZone;
 
 /**
  * Created by Elliott on 1/04/15.
  */
+
+//convert doctor abbreviations
+//capture number of repeats, valid to, when can get another script.
+//
 public class FileIO {
     public static final String SCAN_FILE_INDEX_NAME = "SCAN_INDEX";
     public static final String SCAN_FILE_NAME = "SCAN#";
 
-    public static final String LANGUAGE_TRANSLATION_FILE_NAME = "LANGUAGE_TRANSLATION";
+    public static final String MAIN_MENU_TRANSLATION_FILE_NAME = "MAIN_MENU_TRANSLATION";
+
+
     public static final String AVAILABLE_LANGUAGES_FILE_NAME = "AVAILABLE_LANGUAGES";
     public static final String AVAILABLE_LANGUAGES_CODES_FILE_NAME = "AVAILABLE_LANGUAGES_CODES";
     public static final String USER_INFORMATION_FILE_NAME = "USER_INFORMATION";
+
+    static final String SCAN_NUM_TAG = "scan_num";
+    static final String DATE_TAG = "date";
+
+    static final String PRESCRIPTION_TAG = "prescription";
+    static final String PAT_NAME_TAG = "pat_name";
+    static final String DRUG_NAME_TAG = "drug_name";
+    static final String EXP_INSTRUC_TAG = "exp_instruc";
+    static final String SCRIPT_ID_TAG = "script_id";
+    static final String PHARM_NAME_TAG = "pharm_name";
     ////
 
     private static void saveAvailableLanguagesCodes(ArrayList<Language> availableLanguages, Context context) {
@@ -123,20 +143,6 @@ public class FileIO {
         }
     }
 
-    public static String getUserInformationWithDescription(Context context) {
-        String[] userInfo = FileIO.getUserInformationArray(context);
-        String name = "Name: " + userInfo[0] + "\n";
-        String city = "City: " + userInfo[1] + "\n";
-        String suburb = "Suburb: " + userInfo[2] + "\n";
-        String phone = "Contact No.: " + userInfo[3] + "\n";
-        String medication = "Medication: " + userInfo[4];
-
-        String formatUserInfo = name + city + suburb + phone + medication;
-        return formatUserInfo;
-    }
-
-
-
     private static boolean saveHeaderToFile(String fileName,  String headerData, Context context) {
         headerData = headerData + "\n\n";
         return writeToFile(fileName, headerData, context);
@@ -214,10 +220,26 @@ public class FileIO {
 
         if(stripScanName) {
             fileData = fileData.split("_", 2)[1];
-            return fileData;
-        } else {
-            return fileData;
         }
+        String[] splitFileData = fileData.split("\n\n", 2);
+        String header = splitFileData[0];
+        String body = splitFileData[1];
+
+
+
+        String processedBody = "";
+
+        if(isPrescriptionScanXML(body)) {
+            HashMap<String, String> parseXml = getXMLQRScanMap(body);
+            processedBody = getScanInfoToDisplay(parseXml);
+            //Toast.makeText(context, body, Toast.LENGTH_SHORT).show();
+        } else {
+            processedBody = body;
+        }
+
+        return (header + "\n\n" + processedBody);
+
+
     }
 
     public static void deleteScanIndex(Context context) {
@@ -245,32 +267,6 @@ public class FileIO {
         return writeToFile(SCAN_FILE_INDEX_NAME, index, context);
     }
 
-    /**
-     * Sets the number of scans that have been saved given a integer
-     * @param scanNum
-     * @param context
-     */
-    /*private static void setScanNum(int scanNum, Context context) {
-        SharedPreferences prefs = context.getSharedPreferences(SharedPreferencesIO.PREF_OUR_PILLS_TALK, Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = prefs.edit();
-        editor.putInt(SharedPreferencesIO.KEY_SCAN_TOTAL, scanNum);
-        editor.commit();
-    }*/
-
-    /**
-     * Gets the number of scans that have been saved
-     * @param context
-     * @return
-     */
-    /*private static int getScanNum(Context context) {
-        SharedPreferences prefs = context.getSharedPreferences(SharedPreferencesIO.PREF_OUR_PILLS_TALK, Context.MODE_PRIVATE);
-        return prefs.getInt(SharedPreferencesIO.KEY_SCAN_TOTAL, 0);
-    }*/
-
-    /**
-     * Returns the date as a string in the format D/M/Y_H:M:S
-     * @return the date as a String
-     */
     private static String getDateString() {
         Calendar c = Calendar.getInstance(TimeZone.getDefault());
 
@@ -320,6 +316,11 @@ public class FileIO {
         int scanTotalNum = SharedPreferencesIO.getScanTotal(context); //getScanNum(context);
         String fileName = SCAN_FILE_NAME + String.valueOf(scanTotalNum);
         String fileHeader = fileName + "_" + getDateString()+"\n\n";
+
+
+        if(isPrescriptionScanXML(scanText)) {
+            insertScanMetaInfo(scanText, String.valueOf(scanTotalNum), getDateString());
+        }
         String fileBody = scanText;
         //Toast.makeText(context, fileHeader + fileBody, Toast.LENGTH_LONG).show();
         if(writeToFile(fileName, fileHeader + fileBody, context)) {
@@ -336,6 +337,11 @@ public class FileIO {
             Toast.makeText(context, "Failed to write scan to file", Toast.LENGTH_SHORT).show();
             return false;
         }
+    }
+
+    private static String insertScanMetaInfo(String scanData, String scanNum, String dateString) {
+        //return "<" + PRESCRIPTION_TAG + "><" + SCAN_NUM_TAG + ">" + scanNum + "</" + SCAN_NUM_TAG + ">" + "<" + DATE_TAG + ">" + dateString + "</" + DATE_TAG + ">" + scanData.split("<prescription>", 2)[1];
+        return scanData;
     }
 
     public static String[] getCompleteFiles(String[] fileNames, Context context) {
@@ -393,12 +399,30 @@ public class FileIO {
     }
 
     /**
-     *
+     *<main_menu_translation>
+     *     <lang_code></lang_code>
+     *     <scan_my_pills></scan_my_pills>
+     *     <scan_history></scan_history>
+     *     <settings></settings>
+     *     <emergency></emergency>
+     *     <help></help>
+     *</main_menu_translation>
      * @param translation array of length 5
      * @param languageCode
      * @param context
      */
     public static  void saveMainMenuTranslation(String[] translation, String languageCode, Context context) {
+
+        /*String langCode = "<lang_code>" + languageCode + "</lang_code>";
+        String scanMyPills = "<scan_my_pills>" + translation[0] + "</scan_my_pills>";
+        String scanHistory = "<scan_history>" + translation[1] + "</scan_history>";
+        String settings = "<settings>" + translation[2] + "</settings>";
+        String emergency = "<emergency>" + translation[3] + "</emergency>";
+        String help = "<help>" + translation[4] + "</help>";
+        String fileData = "<main_menu_translation>" + langCode + scanMyPills+ scanHistory + settings + emergency + help + "</main_menu_translation>";
+
+        writeToFile(MAIN_MENU_TRANSLATION_FILE_NAME, fileData, context);*/
+
         FileOutputStream fos = null;
         String header = languageCode + "\n\n";
         String translationNewLine = header;
@@ -411,15 +435,15 @@ public class FileIO {
             translationNewLine = translationNewLine + translation[i] + "\n";
         }
 
-        //Toast.makeText(context, translationNewLine, Toast.LENGTH_LONG).show();
-
         try {
-            fos = context.openFileOutput(LANGUAGE_TRANSLATION_FILE_NAME, Context.MODE_PRIVATE);
+            fos = context.openFileOutput(MAIN_MENU_TRANSLATION_FILE_NAME, Context.MODE_PRIVATE);
             fos.write(translationNewLine.getBytes());
             fos.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+
     }
 
     /**
@@ -427,10 +451,9 @@ public class FileIO {
      * @param context
      * @return
      */
-    public static String getSavedTranslationLanguageCode(Context context) {
-        String languageCode = getFileHeader(LANGUAGE_TRANSLATION_FILE_NAME, context);
+   public static String getSavedMainTranslationLanguageCode(Context context) {
+        String languageCode = getFileHeader(MAIN_MENU_TRANSLATION_FILE_NAME, context);
         if(languageCode.length() != 0) {
-            Log.e("Translation code", languageCode);
             return languageCode;
 
         } else {
@@ -440,6 +463,29 @@ public class FileIO {
 
     }
 
+    public static HashMap<String, String> getXmlHashMap(String fileName, Context context) {
+        HashMap<String, String> xmlHashMap = new HashMap<>();
+        String fileData = readFile(context, fileName);
+        try {
+            XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
+            factory.setNamespaceAware(true);
+            XmlPullParser parser = factory.newPullParser();
+            parser.setInput(new StringReader(fileData));
+            while(parser.getEventType()!= XmlPullParser.END_DOCUMENT) {
+                if (parser.getEventType() == XmlPullParser.START_TAG) {
+                    if (parser.getEventType() == XmlPullParser.TEXT){
+                        xmlHashMap.put(parser.getName(), parser.nextText());
+                    }
+                }
+                parser.next();
+            }
+        } catch (XmlPullParserException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return xmlHashMap;
+    }
     /**
      * Returns an array representation of the translated main menu. I.E:
      * [0] = Scan
@@ -447,12 +493,13 @@ public class FileIO {
      * .
      * .
      * [4] = Help
-     * @param context
+     * @param
      * @return
      */
     public static String[] getMainMenuTranslation(Context context) {
-        String translation = getFileBody(LANGUAGE_TRANSLATION_FILE_NAME, context);
+        String translation = getFileBody(MAIN_MENU_TRANSLATION_FILE_NAME, context);
         String[] translationArray = translation.split("\n");
+
         if(translationArray.length == 5) {
             return translationArray;
         } else {
@@ -472,74 +519,6 @@ public class FileIO {
         return showScansInverted;
     }
     ///
-
-
-    /**
-     * Saves a scanTextView string to file with the name SCAN#(number of total scans).
-     * The date of the scanTextView followed by a blank line is inserted before the scanText.
-     * After creating the file, the name of the file is appended to the scanTextView index on a new line.
-     *
-     * @param scanText
-     * @param context
-     */
-    @Deprecated
-    public static void saveScanOld(String scanText, Context context) {
-        //eraseFilesAndPref(context);
-        //toastStoredFiles(context);
-        //getIndexArray(context);
-        SharedPreferences prefs = context.getSharedPreferences(SharedPreferencesIO.PREF_OUR_PILLS_TALK, Context.MODE_PRIVATE);
-        int scanTotalNum = prefs.getInt(SharedPreferencesIO.KEY_SCAN_TOTAL, 0);
-        String fileName = SCAN_FILE_NAME + String.valueOf(scanTotalNum);
-        String fileData = fileName + " DATE: " + getDateString() + "\n\n" + scanText;
-        FileOutputStream fos = null;
-        try {
-            fos = context.openFileOutput(fileName, Context.MODE_PRIVATE);
-            fos.write(fileData.getBytes());
-            fos.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            SharedPreferences.Editor editor = prefs.edit();
-            int newScanTotalNum = scanTotalNum + 1;
-            editor.putInt(SharedPreferencesIO.KEY_SCAN_TOTAL, newScanTotalNum);
-            editor.commit();
-            updateIndex(fileName, context);
-        }
-    }
-
-
-    /**
-     * All scanTextView file names are stored in an index file named SCAN_FILE_INDEX_NAME
-     * @param fileName file name to be put in index
-     * @param context
-     */
-    @Deprecated
-    private static void updateIndex(String fileName,  Context context) {
-        FileOutputStream fos = null;
-        String fileNameNewLine = "";
-
-        fileNameNewLine = fileName + "\n";
-        /*if(!getIndexArray(context)[0].equals("")) {
-            fileNameNewLine = "\n" + fileName;
-        } else {
-            //dont add \n if no scanTextView in index
-            fileNameNewLine = fileName;
-        }*/
-
-        try {
-            fos = context.openFileOutput(SCAN_FILE_INDEX_NAME, Context.MODE_APPEND);
-            fos.write(fileNameNewLine.getBytes());
-            fos.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            /*SharedPreferences prefs = context.getSharedPreferences(SharedPreferencesIO.PREF_OUR_PILLS_TALK, Context.MODE_PRIVATE);
-            int indexSize = prefs.getInt(SharedPreferencesIO.SCAN_INDEX_SIZE, 0);
-            SharedPreferences.Editor editor = prefs.edit();
-            editor.putInt(SharedPreferencesIO.SCAN_INDEX_SIZE, indexSize + 1);
-            editor.commit();*/
-        }
-    }
 
 
     /**
@@ -696,8 +675,72 @@ public class FileIO {
             e.printStackTrace();
         }
         String fileBody = fileData.split("\n\n", 2)[1];
-        return fileBody;
+
+        if(isPrescriptionScanXML(fileBody)) {
+            HashMap<String, String> parseXml = getXMLQRScanMap(fileBody);
+            return getScanInfoToDisplay(parseXml);
+
+        } else {
+            return fileBody;
+        }
     }
+
+    private static boolean isPrescriptionScanXML(String fileBody) {
+        return fileBody.startsWith("<prescription>");
+    }
+    /**
+     * XML format:
+     *<prescription>
+     *  <pat_name></>
+     *  <drug_name></>
+     *  <exp_instruc></>
+     *  <script_id></>
+     *  <pharm_name></>
+     *<prescription/>
+     *
+     * Returns a formatted string containing patient name, drug name and instructions
+     * @param xml
+     */
+    private static HashMap<String,String> getXMLQRScanMap(String xml) {
+        HashMap<String, String> prescriptionHashMap = new HashMap<>();
+        try {
+            XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
+            factory.setNamespaceAware(true);
+            XmlPullParser parser = factory.newPullParser();
+            parser.setInput(new StringReader(xml));
+            while(parser.getEventType()!= XmlPullParser.END_DOCUMENT) {
+                if (parser.getEventType() == XmlPullParser.START_TAG) {
+                    if (parser.getName().equals(SCAN_NUM_TAG)) {
+                        prescriptionHashMap.put(SCAN_NUM_TAG, parser.nextText());
+                    } else if (parser.getName().equals(DATE_TAG)) {
+                        prescriptionHashMap.put(DATE_TAG, parser.nextText());
+                    } else if (parser.getName().equals(PAT_NAME_TAG)) {
+                        prescriptionHashMap.put(PAT_NAME_TAG, parser.nextText());
+                    } else if (parser.getName().equals(DRUG_NAME_TAG)) {
+                        prescriptionHashMap.put(DRUG_NAME_TAG, parser.nextText());
+                    } else if (parser.getName().equals(EXP_INSTRUC_TAG)) {
+                        prescriptionHashMap.put(EXP_INSTRUC_TAG, parser.nextText());
+                    } else if (parser.getName().equals(SCRIPT_ID_TAG)) {
+                        prescriptionHashMap.put(SCRIPT_ID_TAG, parser.nextText());
+                    } else if (parser.getName().equals(PHARM_NAME_TAG)) {
+                        prescriptionHashMap.put(PHARM_NAME_TAG, parser.nextText());
+                    }
+                }
+                parser.next();
+            }
+        } catch (XmlPullParserException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return prescriptionHashMap;
+    }
+
+    private static String getScanInfoToDisplay(HashMap<String, String> parseXml) {
+        return parseXml.get(DRUG_NAME_TAG).replace("+", " ") + "\n\n" + parseXml.get(PAT_NAME_TAG) + ".\n" + parseXml.get(EXP_INSTRUC_TAG) +".";
+    }
+
+
     /**
      * Prints a toast to screen of the contents of the file name provided
      * and returns the file data as a string.
@@ -740,11 +783,6 @@ public class FileIO {
 
         return files;
     }
-
-
-
-
-
 
     /**
      * Deletes all stored preferences and files for the app
