@@ -36,16 +36,25 @@
             android:id="@+id/stopButton"
             android:layout_weight="1"
             android:layout_margin="1sp"
-            android:textSize="30sp" />
+            android:textSize="25sp" />
 
         <Button
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:text="CMI"
+            android:id="@+id/cmiButton"
+            android:layout_weight="1"
+            android:layout_margin="1sp"
+            android:textSize="25sp" />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
             android:text="Replay"
             android:id="@+id/playButton"
             android:layout_weight="1"
             android:layout_margin="1sp"
-            android:textSize="30sp" />
+            android:textSize="25sp" />
     </LinearLayout>
 
 </LinearLayout>

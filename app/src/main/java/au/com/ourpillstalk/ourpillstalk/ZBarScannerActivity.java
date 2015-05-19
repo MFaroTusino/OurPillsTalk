@@ -63,6 +63,7 @@ public class ZBarScannerActivity extends Activity implements ZBarScannerView.Res
             showScan.putExtra("fileName", index[index.length - 1]);
             startActivity(showScan);
 
+
             Log.v("Scan result", rawResult.getContents()); // Prints scan results
             Log.v("Bar code Format", rawResult.getBarcodeFormat().getName()); // Prints the scan format (qrcode, pdf417 etc.)
         }

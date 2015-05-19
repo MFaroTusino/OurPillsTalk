@@ -45,6 +45,4 @@
     <string name="eraseTitle">Confirm Erase</string>
     <string name="eraseUserInfo">Are you sure you wish to erase user info?</string>
     <string name="eraseScanInfo">Are you sure you wish to erase scan history?</string>
-    <string name="app_name">Our Pills Talk</string>
-
 </resources>

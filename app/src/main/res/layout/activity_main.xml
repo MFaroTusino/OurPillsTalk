@@ -42,10 +42,15 @@
                     android:layout_height="0dp"
                     android:layout_weight="4"
                     android:src="@drawable/qr_logo"
-                    android:layout_margin="4dp"
                     android:clickable="true"
 
                     />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/imageView" />
+
                 <TextView
                     android:id="@+id/ButtonScanText"
                     android:gravity="center"
@@ -56,9 +61,11 @@
                     android:textColor="#FFFFFF"
                     android:text="@string/ButtonTextScan"
                     android:layout_margin="0dp"
-                    android:textSize="30sp"
+                    android:textSize="35sp"
 
-                    android:clickable="true" />
+                    android:clickable="true"
+                    android:shadowColor="#000"
+                    android:shadowRadius="15" />
             </LinearLayout>
         </LinearLayout>
 
@@ -83,7 +90,7 @@
                 <ImageView
                     android:id="@+id/historyButton"
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
+                    android:layout_height="wrap_content"
                     android:layout_margin="4dp"
                     android:src="@drawable/scanhistory_button"
                     android:gravity="center"
@@ -94,16 +101,18 @@
                 <TextView
                     android:id="@+id/historyButtonText"
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
+                    android:layout_height="wrap_content"
                     android:scaleType="fitXY"
 
-                    android:gravity="center"
                     android:text="@string/scanHistory"
                     android:clickable="true"
-                    android:textSize="25sp"
+                    android:textSize="30sp"
                     android:textColor="#FFFFFF"
                     android:autoText="false"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    android:shadowColor="#000"
+                    android:shadowRadius="10"
+                    android:gravity="center" />
             </LinearLayout>
 
             <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -118,7 +127,7 @@
                 <ImageView
                     android:id="@+id/settingsButton"
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:padding="4dp"
                     android:gravity="center"
@@ -131,16 +140,18 @@
                 <TextView
                     android:id="@+id/settingsButtonText"
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:scaleType="fitXY"
                     android:gravity="center"
 
                     android:clickable="true"
 
-                    android:textSize="25sp"
+                    android:textSize="30sp"
                     android:textColor="#FFFFFF"
-                    android:text="@string/action_settings" />
+                    android:text="@string/action_settings"
+                    android:shadowColor="#000"
+                    android:shadowRadius="10" />
             </LinearLayout>
 
         </LinearLayout>
@@ -164,7 +175,7 @@
                 <ImageView
                     android:id="@+id/emergencyButton"
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:layout_margin="4dp"
                     android:gravity="center"
@@ -175,14 +186,16 @@
 
                 <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
+                    android:layout_height="wrap_content"
                     android:text="Emergency"
                     android:id="@+id/emergencyText"
                     android:clickable="true"
                     android:gravity="center"
-                    android:textSize="25sp"
+                    android:textSize="30sp"
                     android:textColor="#FFF"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    android:shadowColor="#000"
+                    android:shadowRadius="10" />
             </LinearLayout>
 
             <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -196,7 +209,7 @@
                 <ImageView
                     android:id="@+id/helpButton"
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:layout_margin="4dp"
                     android:gravity="center"
@@ -209,15 +222,16 @@
                 <TextView
                     android:id="@+id/helpButtonText"
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:scaleType="fitXY"
                     android:gravity="center"
                     android:clickable="true"
                     android:text="@string/help_me"
-                    android:textSize="25sp"
+                    android:textSize="30sp"
                     android:textColor="#FFFFFF"
-                    />
+                    android:shadowColor="#000"
+                    android:shadowRadius="10" />
             </LinearLayout>
         </LinearLayout>
 
@@ -259,7 +273,8 @@
                     android:clickable="true"
                     android:textSize="25sp"
                     android:textColor="#FFFFFF"
-                    />
+                    android:shadowColor="#000"
+                    android:shadowRadius="10" />
 
                 <LinearLayout
                     android:orientation="vertical"

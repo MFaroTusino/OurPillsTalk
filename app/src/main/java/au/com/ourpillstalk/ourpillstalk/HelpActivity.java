@@ -10,11 +10,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.memetix.mst.language.Language;
 import com.memetix.mst.translate.Translate;
 
@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 public class HelpActivity extends AppCompatActivity implements TextToSpeech.OnInitListener,OnTouchListener {
-    ImageView back;
+
     TextView help_text;
     // TextView last_scanT;
     TextToSpeech textToSpeech;
@@ -51,20 +51,12 @@ public class HelpActivity extends AppCompatActivity implements TextToSpeech.OnIn
         super.onCreate(savedInstanceState);
         setTitle("Help");
         setContentView(R.layout.activity_help_me);
-        back = (ImageView) findViewById(R.id.back);
+
         help_text = (TextView) findViewById(R.id.textView1);
         textToSpeech = new TextToSpeech(this, this);
-        back.setOnClickListener(new OnClickListener() {
 
-            @Override
-            public void onClick(View arg0) {
-                // TODO Auto-generated method stub
-                textToSpeech.stop();
-                finish();
-            }
-        });
 
-        help_text.setOnTouchListener(new OnTouchListener() {
+        /*help_text.setOnTouchListener(new OnTouchListener() {
 
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -94,7 +86,7 @@ public class HelpActivity extends AppCompatActivity implements TextToSpeech.OnIn
                 }
                 return true;
             }
-        });
+        });*/
     }
 
     @Override

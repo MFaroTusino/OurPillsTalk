@@ -5,7 +5,7 @@
     <string name="action_settings">Settings</string>
     <string name="lastScan">Last Scan</string>
     <string name="help_me">Help</string>
-    <string name="scanHistory">Scan History</string>
+    <string name="scanHistory">History</string>
     <string name="ButtonTextMedOrgAu">CMI Website</string>
     <string name="ButtonTextInstructions">Instructions</string>
     <string name="ButtonTextPause">Pause</string>
