@@ -44,10 +44,16 @@ public class ScanActivity extends AppCompatActivity implements View.OnClickListe
         stopButton = (Button) findViewById(R.id.stopButton);
         cmiButton = (Button) findViewById(R.id.cmiButton);
 
+
         if(!fileName.equals("-1")) {
             scanTextView.setText(FileIO.getFileBody(fileName, getApplicationContext()));
         } else {
             scanTextView.setText("No scan history");
+        }
+
+        if(!FileIO.isPrescriptionScanXML(FileIO.readFile(getApplicationContext(), fileName, true))) { //get raw file method
+            //Toast.makeText(this, FileIO.getFileBody(fileName, getApplicationContext()), Toast.LENGTH_LONG).show();
+            cmiButton.setVisibility(View.INVISIBLE);
         }
         setOnClickListeners();
         translate();

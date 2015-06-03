@@ -703,7 +703,7 @@ public class FileIO {
         }
     }
 
-    private static boolean isPrescriptionScanXML(String fileBody) {
+    public static boolean isPrescriptionScanXML(String fileBody) {
         return fileBody.startsWith("<prescription>");
     }
     /**
@@ -774,11 +774,13 @@ public class FileIO {
 
         if(isPrescriptionScanXML(fileBody)) {
              return getXMLQRScanMap(fileBody).get(DRUG_NAME_TAG).replace("+", " ").split(" ")[0];
+        } else {
+            return "";
         }
 
-        String filePlain = getFileBody(fileName, context);
-        String drugName =  filePlain.split("\n\n")[0];
-        return drugName;
+       // String filePlain = getFileBody(fileName, context);
+        //String drugName =  filePlain.split("\n\n")[0];
+        //return drugName;
     }
 
 
@@ -801,6 +803,25 @@ public class FileIO {
         }
         catch (IOException e) {
             e.printStackTrace();
+        }
+        return fileData;
+    }
+
+    public static String readFile(Context context, String fileName, boolean stripHead) {
+        String fileData = "";
+        try {
+            InputStream in = new BufferedInputStream(context.openFileInput(fileName));
+            StringWriter writer = new StringWriter();
+            IOUtils.copy(in, writer);
+            fileData = writer.toString();
+            //Toast.makeText(context, fileData, Toast.LENGTH_LONG).show();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        if(stripHead && fileData.contains("\n\n")) {
+            return fileData.split("\n\n", 2)[1];
         }
         return fileData;
     }

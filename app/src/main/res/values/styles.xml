@@ -10,13 +10,28 @@
             res/values-vXX/styles.xml, while customizations related to
             backward-compatibility can go here.
         -->
+
     </style>
 
     <!-- Application theme. -->
-    <style name="AppTheme" parent="AppBaseTheme">
-        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    <style name="Scan" parent="AppBaseTheme">
+        <item name="android:background">#ffc3d888</item>
     </style>
-    
+    <style name="History" parent="AppBaseTheme">
+        <item name="android:background">#FF1bbc9b</item>
+    </style>
+    <style name="Settings" parent="AppBaseTheme">
+        <item name="android:background">#FF9b58b5</item>
+    </style>
+    <style name="Emergency" parent="AppBaseTheme">
+        <item name="android:background">#FFe84c3d</item>
+    </style>
+    <style name="Help" parent="AppBaseTheme">
+        <item name="android:background">#ff3598db</item>
+    </style>
+
+
+
     <style name="boldText">
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">#FFFFFF</item>

@@ -3,6 +3,7 @@ package au.com.ourpillstalk.ourpillstalk;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -21,6 +22,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
 
     ImageView scanImage, scanHistoryImage, emergencyImage, settingsImage, helpMeImage;
     TextView scanText, last_scanText, scanHistoryText, settingsText, helpMeText, emergencyText;
+    TextView  scanEngText, scanHistoryEngText, settingsEngText, helpMeEngText, emergencyEngText;
     TranslateAsync translate;
     //FrameLayout mainFrameLayout;
     @Override
@@ -45,9 +47,40 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
         scanHistoryText = (TextView) findViewById(R.id.historyButtonText);
         settingsText = (TextView) findViewById(R.id.settingsButtonText);
         helpMeText = (TextView) findViewById(R.id.helpButtonText);
+
+        emergencyEngText = (TextView) findViewById(R.id.emgEngText);
+        scanEngText = (TextView) findViewById(R.id.scanEngText);
+        scanHistoryEngText = (TextView) findViewById(R.id.histEngText);
+        settingsEngText = (TextView) findViewById(R.id.settEngText);
+        helpMeEngText = (TextView) findViewById(R.id.helpEngText);
         //loadFakeScans();
+        //setFonts();
         translate();
         setOnClickListeners();
+    }
+
+    private void showEngText(boolean showEngText) {
+        if(showEngText) {
+            emergencyEngText.setVisibility(View.VISIBLE);
+            scanEngText.setVisibility(View.VISIBLE);
+            scanHistoryEngText.setVisibility(View.VISIBLE);
+            settingsEngText.setVisibility(View.VISIBLE);
+            helpMeEngText.setVisibility(View.VISIBLE);
+        } else {
+            emergencyEngText.setVisibility(View.GONE);
+            scanEngText.setVisibility(View.GONE);
+            scanHistoryEngText.setVisibility(View.GONE);
+            settingsEngText.setVisibility(View.GONE);
+            helpMeEngText.setVisibility(View.GONE);
+        }
+    }
+    private void setFonts() {
+        Typeface face=Typeface.createFromAsset(getAssets(),"fonts/VastShadow-Regular.ttf");
+        scanText.setTypeface(face);
+        scanHistoryText.setTypeface(face);
+        settingsText.setTypeface(face);
+        helpMeText.setTypeface(face);
+        emergencyText.setTypeface(face);
     }
 
     private void translate() {
@@ -57,6 +90,8 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
             }
             translate = new TranslateAsync();
             translate.execute();
+        } else {
+            showEngText(false);
         }
 
         /*if(!getString("langcode").equals("en")) {
@@ -174,6 +209,9 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
                 languageCode = SharedPreferencesIO.getLanguageCode(getApplicationContext());
                 if (languageCode.equalsIgnoreCase("")) {
                     languageCode = "en";
+
+                } else {
+                    showEngText(true);
                 }
 
                 if(languageCode.equals(FileIO.getSavedMainTranslationLanguageCode(getApplicationContext())) ) {

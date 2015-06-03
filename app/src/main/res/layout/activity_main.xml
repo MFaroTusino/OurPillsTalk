@@ -30,11 +30,12 @@
                 android:layout_weight="10"
                 android:orientation="vertical"
                 android:drawable="@color/white"
-                android:background="#ffc3d888"
                 android:layout_margin="1dp"
                 android:focusable="false"
                 android:focusableInTouchMode="false"
-                android:clickable="true">
+                android:clickable="true"
+                android:background="#ffc3d888">
+
                 <ImageView
                     android:id="@+id/ButtonScan"
                     android:gravity="center"
@@ -46,26 +47,32 @@
 
                     />
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/imageView" />
-
                 <TextView
                     android:id="@+id/ButtonScanText"
                     android:gravity="center"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1"
+                    android:layout_weight="1.2"
                     android:scaleType="fitXY"
                     android:textColor="#FFFFFF"
                     android:text="@string/ButtonTextScan"
                     android:layout_margin="0dp"
-                    android:textSize="35sp"
+                    android:textSize="40sp"
 
                     android:clickable="true"
                     android:shadowColor="#000"
-                    android:shadowRadius="15" />
+                    android:shadowRadius="15"
+                    android:singleLine="true"
+                    android:autoText="true" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Scan My Pills"
+                    android:id="@+id/scanEngText"
+                    android:visibility="gone"
+                    android:layout_gravity="center_horizontal"
+                    android:textColor="#FFFFFF" />
             </LinearLayout>
         </LinearLayout>
 
@@ -85,8 +92,9 @@
                 android:layout_weight="1"
                 android:orientation="vertical"
                 android:layout_margin="1dp"
-                android:background="#ff1bbc9b"
+                android:background="#FF1bbc9b"
                 >
+
                 <ImageView
                     android:id="@+id/historyButton"
                     android:layout_width="match_parent"
@@ -106,13 +114,24 @@
 
                     android:text="@string/scanHistory"
                     android:clickable="true"
-                    android:textSize="30sp"
+                    android:textSize="32sp"
                     android:textColor="#FFFFFF"
                     android:autoText="false"
                     android:layout_weight="1"
                     android:shadowColor="#000"
-                    android:shadowRadius="10"
-                    android:gravity="center" />
+                    android:shadowRadius="15"
+                    android:gravity="center"
+                    android:singleLine="true" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="History"
+                    android:id="@+id/histEngText"
+                    android:layout_weight="1"
+                    android:visibility="gone"
+                    android:layout_gravity="center_horizontal"
+                    android:textColor="#FFFFFF" />
             </LinearLayout>
 
             <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -121,9 +140,10 @@
                 android:layout_weight="1"
                 android:orientation="vertical"
                 android:layout_margin="1dp"
-                android:background="#FF9b58b5"
 
-                android:nestedScrollingEnabled="false">
+                android:nestedScrollingEnabled="false"
+                android:background="#FF9b58b5">
+
                 <ImageView
                     android:id="@+id/settingsButton"
                     android:layout_width="match_parent"
@@ -147,11 +167,22 @@
 
                     android:clickable="true"
 
-                    android:textSize="30sp"
+                    android:textSize="32sp"
                     android:textColor="#FFFFFF"
                     android:text="@string/action_settings"
                     android:shadowColor="#000"
-                    android:shadowRadius="10" />
+                    android:shadowRadius="15"
+                    android:singleLine="true" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Settings"
+                    android:id="@+id/settEngText"
+                    android:layout_weight="1"
+                    android:visibility="gone"
+                    android:layout_gravity="center_horizontal"
+                    android:textColor="#FFFFFF" />
             </LinearLayout>
 
         </LinearLayout>
@@ -172,6 +203,7 @@
                 android:layout_margin="1dp"
                 android:background="#FFe84c3d"
                 >
+
                 <ImageView
                     android:id="@+id/emergencyButton"
                     android:layout_width="match_parent"
@@ -191,11 +223,22 @@
                     android:id="@+id/emergencyText"
                     android:clickable="true"
                     android:gravity="center"
-                    android:textSize="30sp"
+                    android:textSize="32sp"
                     android:textColor="#FFF"
                     android:layout_weight="1"
                     android:shadowColor="#000"
-                    android:shadowRadius="10" />
+                    android:shadowRadius="15"
+                    android:singleLine="true" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Emergency"
+                    android:id="@+id/emgEngText"
+                    android:layout_weight="1"
+                    android:visibility="gone"
+                    android:layout_gravity="center_horizontal"
+                    android:textColor="#FFFFFF" />
             </LinearLayout>
 
             <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -206,6 +249,7 @@
                 android:layout_margin="1dp"
                 android:background="#ff3598db"
                 >
+
                 <ImageView
                     android:id="@+id/helpButton"
                     android:layout_width="match_parent"
@@ -228,10 +272,20 @@
                     android:gravity="center"
                     android:clickable="true"
                     android:text="@string/help_me"
-                    android:textSize="30sp"
+                    android:textSize="32sp"
                     android:textColor="#FFFFFF"
                     android:shadowColor="#000"
-                    android:shadowRadius="10" />
+                    android:shadowRadius="10"
+                    android:singleLine="true" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/helpEngText"
+                    android:text="Help"
+                    android:visibility="gone"
+                    android:layout_gravity="center_horizontal"
+                    android:textColor="#FFFFFF" />
             </LinearLayout>
         </LinearLayout>
 

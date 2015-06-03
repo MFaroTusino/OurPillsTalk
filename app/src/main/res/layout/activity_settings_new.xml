@@ -46,7 +46,7 @@
                 android:layout_width="263dp"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Hide Duplicate Scans"
+                android:text=" Hide Duplicate Scans"
                 android:id="@+id/textView10"
                 android:textSize="25sp" />
 
@@ -56,7 +56,8 @@
                 android:text="New ToggleButton"
                 android:id="@+id/toggleDuplicatesButton"
                 android:checked="false"
-                android:textSize="30sp" />
+                android:textSize="30sp"
+                android:backgroundTint="#FFF" />
 
         </LinearLayout>
 
@@ -66,7 +67,8 @@
             android:text="Reset User Info"
             android:id="@+id/resetUserInfoButton"
             android:layout_gravity="center_horizontal"
-            android:textSize="30sp" />
+            android:textSize="30sp"
+            android:backgroundTint="#FFF" />
 
         <Button
             android:layout_width="match_parent"
@@ -74,7 +76,8 @@
             android:text="Erase All Scans"
             android:id="@+id/deleteAllScansButton"
             android:layout_gravity="center_horizontal"
-            android:textSize="30sp" />
+            android:textSize="30sp"
+            android:backgroundTint="#FFF" />
     </LinearLayout>
 
 </LinearLayout>

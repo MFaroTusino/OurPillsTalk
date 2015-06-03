@@ -87,6 +87,19 @@ public class CustomDialog extends DialogFragment {
 
                 }
             });
+        } else if(popupInstance == "incorrectQR") {
+            alertBuilder.setTitle("Foreign QR code")
+                    .setMessage("Please scan a compatable Our Pills Talk QR Code");
+            alertBuilder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+
+                }
+            });
+            alertBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+
+                }
+            });
         }
         return alertBuilder.create();
     }

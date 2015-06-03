@@ -1,5 +1,7 @@
 package au.com.ourpillstalk.ourpillstalk;
 
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -43,11 +45,35 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
         }
         setOnClickListeners();
         GetLanguageAsync getLanguages = new GetLanguageAsync();
-        getLanguages.execute();
+
+        if(hasConnection()) {
+            getLanguages.execute();
+        }
 
     }
 
+    public boolean hasConnection() {
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(this.CONNECTIVITY_SERVICE);
 
+        NetworkInfo wifiNetwork = cm
+                .getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+        if (wifiNetwork != null && wifiNetwork.isConnected()) {
+            return true;
+        }
+
+        NetworkInfo mobileNetwork = cm
+                .getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+        if (mobileNetwork != null && mobileNetwork.isConnected()) {
+            return true;
+        }
+
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        if (activeNetwork != null && activeNetwork.isConnected()) {
+            return true;
+        }
+
+        return false;
+    }
     private void setSpinnerChoiceSelection() {
         String languageCode = SharedPreferencesIO.getLanguageCode(getApplicationContext());
         ArrayList<String> allLanguageCodes = FileIO.getAvailableLanguagesCodes(getApplicationContext());
