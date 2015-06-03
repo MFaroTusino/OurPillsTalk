@@ -84,6 +84,11 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
     }
 
     private void translate() {
+        //translate = new TranslateAsync();
+        if(translate != null) {
+            translate.pDialog.dismiss();
+            translate.cancel(true);
+        }
         if(!SharedPreferencesIO.getLanguageCode(getApplicationContext()).equals("en")) {
             if(translate != null) {
                 translate.cancel(true);
@@ -169,6 +174,12 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
             startActivity(intent);
         }
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        translate();
+    }
    /* @Override
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
         if (requestCode == 0) {
@@ -222,7 +233,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
                 } else {
                     Language l;
                     l = Language.fromString(languageCode);
-                    translatedText[0] = Translate.execute(scanText.getText().toString(), l);
+                    translatedText[0] = Translate.execute("Scan", l); //to avoid moving off screen, scanText.getText().toString()
                     translatedText[1] = Translate.execute(emergencyText.getText().toString(), l);
                     translatedText[2] = Translate.execute(scanHistoryText.getText().toString(), l);
                     translatedText[3] = Translate.execute(settingsText.getText().toString(), l);

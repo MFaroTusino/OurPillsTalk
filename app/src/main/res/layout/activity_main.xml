@@ -41,7 +41,7 @@
                     android:gravity="center"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="4"
+                    android:layout_weight="10"
                     android:src="@drawable/qr_logo"
                     android:clickable="true"
 
@@ -50,9 +50,9 @@
                 <TextView
                     android:id="@+id/ButtonScanText"
                     android:gravity="center"
-                    android:layout_width="match_parent"
+                    android:layout_width="fill_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1.2"
+                    android:layout_weight="3"
                     android:scaleType="fitXY"
                     android:textColor="#FFFFFF"
                     android:text="@string/ButtonTextScan"
@@ -63,16 +63,19 @@
                     android:shadowColor="#000"
                     android:shadowRadius="15"
                     android:singleLine="true"
-                    android:autoText="true" />
+                    android:autoText="true"
+                    android:inputType="textNoSuggestions"
+                    android:layout_gravity="center" />
 
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="0dp"
                     android:text="Scan My Pills"
                     android:id="@+id/scanEngText"
                     android:visibility="gone"
                     android:layout_gravity="center_horizontal"
-                    android:textColor="#FFFFFF" />
+                    android:textColor="#FFFFFF"
+                    android:layout_weight="1" />
             </LinearLayout>
         </LinearLayout>
 
@@ -98,18 +101,18 @@
                 <ImageView
                     android:id="@+id/historyButton"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="0dp"
                     android:layout_margin="4dp"
                     android:src="@drawable/scanhistory_button"
                     android:gravity="center"
                     android:clickable="true"
 
-                    android:layout_weight="1"
+                    android:layout_weight="10"
                     android:focusable="false" />
                 <TextView
                     android:id="@+id/historyButtonText"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="0dp"
                     android:scaleType="fitXY"
 
                     android:text="@string/scanHistory"
@@ -117,7 +120,7 @@
                     android:textSize="32sp"
                     android:textColor="#FFFFFF"
                     android:autoText="false"
-                    android:layout_weight="1"
+                    android:layout_weight="6"
                     android:shadowColor="#000"
                     android:shadowRadius="15"
                     android:gravity="center"
@@ -125,10 +128,10 @@
 
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="0dp"
                     android:text="History"
                     android:id="@+id/histEngText"
-                    android:layout_weight="1"
+                    android:layout_weight="3"
                     android:visibility="gone"
                     android:layout_gravity="center_horizontal"
                     android:textColor="#FFFFFF" />
@@ -147,8 +150,8 @@
                 <ImageView
                     android:id="@+id/settingsButton"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_height="0dp"
+                    android:layout_weight="10"
                     android:padding="4dp"
                     android:gravity="center"
                     android:src="@drawable/setting_button"
@@ -160,8 +163,8 @@
                 <TextView
                     android:id="@+id/settingsButtonText"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_height="0dp"
+                    android:layout_weight="6"
                     android:scaleType="fitXY"
                     android:gravity="center"
 
@@ -176,10 +179,10 @@
 
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="0dp"
                     android:text="Settings"
                     android:id="@+id/settEngText"
-                    android:layout_weight="1"
+                    android:layout_weight="3"
                     android:visibility="gone"
                     android:layout_gravity="center_horizontal"
                     android:textColor="#FFFFFF" />
@@ -207,8 +210,8 @@
                 <ImageView
                     android:id="@+id/emergencyButton"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_height="0dp"
+                    android:layout_weight="10"
                     android:layout_margin="4dp"
                     android:gravity="center"
                     android:src="@drawable/emergency_logo"
@@ -218,24 +221,24 @@
 
                 <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="0dp"
                     android:text="Emergency"
                     android:id="@+id/emergencyText"
                     android:clickable="true"
                     android:gravity="center"
                     android:textSize="32sp"
                     android:textColor="#FFF"
-                    android:layout_weight="1"
+                    android:layout_weight="6"
                     android:shadowColor="#000"
                     android:shadowRadius="15"
                     android:singleLine="true" />
 
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="0dp"
                     android:text="Emergency"
                     android:id="@+id/emgEngText"
-                    android:layout_weight="1"
+                    android:layout_weight="3"
                     android:visibility="gone"
                     android:layout_gravity="center_horizontal"
                     android:textColor="#FFFFFF" />
@@ -253,8 +256,8 @@
                 <ImageView
                     android:id="@+id/helpButton"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_height="0dp"
+                    android:layout_weight="10"
                     android:layout_margin="4dp"
                     android:gravity="center"
 
@@ -266,8 +269,8 @@
                 <TextView
                     android:id="@+id/helpButtonText"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_height="0dp"
+                    android:layout_weight="6"
                     android:scaleType="fitXY"
                     android:gravity="center"
                     android:clickable="true"
@@ -280,12 +283,13 @@
 
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="0dp"
                     android:id="@+id/helpEngText"
                     android:text="Help"
                     android:visibility="gone"
                     android:layout_gravity="center_horizontal"
-                    android:textColor="#FFFFFF" />
+                    android:textColor="#FFFFFF"
+                    android:layout_weight="3" />
             </LinearLayout>
         </LinearLayout>
 
