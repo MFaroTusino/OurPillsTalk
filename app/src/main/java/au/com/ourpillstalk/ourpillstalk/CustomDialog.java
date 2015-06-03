@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.DialogInterface;
+import android.net.Uri;
 import android.os.Bundle;
 import android.content.Intent;
 
@@ -13,9 +14,15 @@ import android.content.Intent;
  */
 public class CustomDialog extends DialogFragment {
     public static String popupInstance;
+    public static String drugName;
 
     public static void setInstance(String instance) {
         popupInstance = instance.toLowerCase();
+    }
+
+    public static void setInstance(String instance, String fileName) {
+        popupInstance = instance.toLowerCase();
+        drugName = fileName.toLowerCase();
     }
 
     @Override
@@ -64,6 +71,35 @@ public class CustomDialog extends DialogFragment {
                 }
             });
 
+        } else if(popupInstance == "cmi") {
+            alertBuilder.setTitle("Leaving Our Pills Talk")
+                    .setMessage("The following CMI is not affiliated with Our Pills Talk.\n\nLeave Our Pills Talk to view CMI?");
+            alertBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+
+                    Intent i = new Intent(Intent.ACTION_VIEW,
+                            Uri.parse("http://www.medicines.org.au/mob/consumer-results.cfm?searchtext=" + drugName));
+                    getActivity().startActivity(i);
+                }
+            });
+            alertBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+
+                }
+            });
+        } else if(popupInstance == "incorrectQR") {
+            alertBuilder.setTitle("Foreign QR code")
+                    .setMessage("Please scan a compatable Our Pills Talk QR Code");
+            alertBuilder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+
+                }
+            });
+            alertBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+
+                }
+            });
         }
         return alertBuilder.create();
     }

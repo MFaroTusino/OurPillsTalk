@@ -45,11 +45,13 @@ public class ZBarScannerActivity extends Activity implements ZBarScannerView.Res
     public void handleResult(Result rawResult) {
         // Do something with the result here
         if(rawResult.getBarcodeFormat() == BarcodeFormat.QRCODE) {
-            ToneGenerator tone = new ToneGenerator(AudioManager.STREAM_ALARM, 100);
-            tone .startTone(ToneGenerator.TONE_CDMA_ALERT_CALL_GUARD, 200);
-            Vibrator v = (Vibrator) getApplicationContext().getSystemService(Context.VIBRATOR_SERVICE);
-            v.vibrate(250);
+
             String scanResult = rawResult.getContents();
+            ToneGenerator tone = new ToneGenerator(AudioManager.STREAM_ALARM, 100);
+            tone.startTone(ToneGenerator.TONE_CDMA_ALERT_CALL_GUARD, 400);
+            Vibrator v = (Vibrator) getApplicationContext().getSystemService(Context.VIBRATOR_SERVICE);
+            v.vibrate(500);
+
             //save scan to file and pass the file name to the Scan Activity (the last scan of the index)
 
             FileIO.saveQRScan(scanResult, getApplicationContext());
@@ -63,8 +65,10 @@ public class ZBarScannerActivity extends Activity implements ZBarScannerView.Res
             showScan.putExtra("fileName", index[index.length - 1]);
             startActivity(showScan);
 
+
             Log.v("Scan result", rawResult.getContents()); // Prints scan results
             Log.v("Bar code Format", rawResult.getBarcodeFormat().getName()); // Prints the scan format (qrcode, pdf417 etc.)
+
         }
     }
 

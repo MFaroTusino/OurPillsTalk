@@ -4,8 +4,6 @@ package au.com.ourpillstalk.ourpillstalk;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.TypedArray;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
@@ -30,7 +28,7 @@ public class EmergencyActivity extends AppCompatActivity implements View.OnClick
     TextView userInfoDisplayText;
     //ArrayAdapter<String> scansAdaptor;
     ScanPreviewAdaptor scanPreviewAdaptor;
-    static final int NUM_SCANS = 10;
+    static final int NUM_SCANS = 50;
     String[] scanIndex;
 
     public void onCreate(Bundle savedInstanceState) {
@@ -60,12 +58,12 @@ public class EmergencyActivity extends AppCompatActivity implements View.OnClick
     private void createAdaptor() {
         //scansAdaptor = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, FileIO.getFileBodies(getLastNScansInverted(scanIndex), getApplicationContext()));
         //scanListView = (ListView) findViewById(R.id.scanDataListView);
-        scanIndex = FileIO.getIndexArray(getApplicationContext());
-        String[] lastNfileBodies = FileIO.getFileBodies(getLastNScansInverted(scanIndex), getApplicationContext());
+        scanIndex = FileIO.getRemovedDuplicateIndex(getApplicationContext());
+        String[] scans = FileIO.getCompleteScanFiles(getLastNScansInverted(scanIndex), true, getApplicationContext());
         ArrayList<String> fileBodies = new ArrayList<String>();
 
-        for(int i = 0; i < lastNfileBodies.length; i++) {
-            fileBodies.add(lastNfileBodies[i]);
+        for(int i = 0; i < scans.length; i++) {
+            fileBodies.add(scans[i]);
         }
 
         scanPreviewAdaptor = new ScanPreviewAdaptor(getApplicationContext(), R.layout.scan_emergency_view_row, R.id.scanPreviewViewText, fileBodies, this);

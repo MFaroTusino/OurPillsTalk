@@ -1,5 +1,6 @@
 package au.com.ourpillstalk.ourpillstalk;
 
+import android.app.DialogFragment;
 import android.app.ProgressDialog;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -12,8 +13,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.memetix.mst.language.Language;
 import com.memetix.mst.translate.Translate;
+
 import java.util.Locale;
 
 /**
@@ -22,7 +25,7 @@ import java.util.Locale;
 public class ScanActivity extends AppCompatActivity implements View.OnClickListener, TextToSpeech.OnInitListener {
 
     TextView scanTextView;
-    Button playButton, stopButton;
+    Button playButton, stopButton, cmiButton;
     TextToSpeech textToSpeech;
 
     @Override
@@ -33,14 +36,24 @@ public class ScanActivity extends AppCompatActivity implements View.OnClickListe
         Bundle passedBundle = getIntent().getExtras();
         String fileName = "";
         fileName = passedBundle.getString("fileName");
+
+
+
         scanTextView = (TextView) findViewById(R.id.lastScanTextView);
         playButton = (Button) findViewById(R.id.playButton);
         stopButton = (Button) findViewById(R.id.stopButton);
+        cmiButton = (Button) findViewById(R.id.cmiButton);
+
 
         if(!fileName.equals("-1")) {
             scanTextView.setText(FileIO.getFileBody(fileName, getApplicationContext()));
         } else {
             scanTextView.setText("No scan history");
+        }
+
+        if(!FileIO.isPrescriptionScanXML(FileIO.readFile(getApplicationContext(), fileName, true))) { //get raw file method
+            //Toast.makeText(this, FileIO.getFileBody(fileName, getApplicationContext()), Toast.LENGTH_LONG).show();
+            cmiButton.setVisibility(View.INVISIBLE);
         }
         setOnClickListeners();
         translate();
@@ -51,6 +64,7 @@ public class ScanActivity extends AppCompatActivity implements View.OnClickListe
         scanTextView.setOnClickListener(this);
         playButton.setOnClickListener(this);
         stopButton.setOnClickListener(this);
+        cmiButton.setOnClickListener(this);
     }
 
     private void startTextToSpeech() {
@@ -194,6 +208,13 @@ public class ScanActivity extends AppCompatActivity implements View.OnClickListe
                     textToSpeech.shutdown();
                 }
                 break;
+            }
+            case R.id.cmiButton: {
+                DialogFragment cmiDialog = new CustomDialog();
+                Bundle passedBundle = getIntent().getExtras();
+                String drugName = FileIO.getDrugName(passedBundle.getString("fileName"), getApplicationContext());
+                CustomDialog.setInstance("cmi", drugName);
+                cmiDialog.show(getFragmentManager(), "cmi");
             }
         }
     }

@@ -70,7 +70,6 @@ public class FileIO {
         for(int i = 0; i < languages.length; i++) {
             availableLanguages.add(languages[i]);
         }
-
         return availableLanguages;
     }
 
@@ -100,7 +99,16 @@ public class FileIO {
         String header = USER_INFORMATION_FILE_NAME + "_" + getDateString() + "\n\n";
         String body = "";
         for(int i = 0; i < userInfo.length; i++) {
-            body = body + userInfo[i] +"\n";
+            String title = "";
+            switch(i) {
+                case 0: title = "name:                    "; break;
+                case 1: title = "city/suburb:          "; break;
+                case 2: title = "state:                     "; break;
+                case 3: title = "contact:                 "; break;
+                case 4: title = "medications:        "; break;
+                case 5: title = "allergies:               "; break;
+            }
+            body = body + title + userInfo[i] +"\n";
         }
         writeToFile(USER_INFORMATION_FILE_NAME, header + body, context);
     }
@@ -114,6 +122,7 @@ public class FileIO {
     }
     public static String getUserInformation(Context context) {
         String userInfoBody = getFileBody(USER_INFORMATION_FILE_NAME, context);
+
         if(!userInfoBody.equals("\n\n\n\n\n")) {
             return userInfoBody;
         } else {
@@ -199,6 +208,7 @@ public class FileIO {
 
         return fileData;
     }
+
     /**
      * Returns a string representation of the contents of a file given a file name.
      * @param fileName
@@ -242,7 +252,34 @@ public class FileIO {
 
     }
 
+    /*public static void deleteOldScans(int monthsOldLimit, Context context) {
+        String[] index = getIndexArray(context);
+        for(int i = 0 ; i < index.length; i++) {
+            if(getScanFileAge(index[i], context) > monthsOldLimit) {
+                deleteScanInIndex(index[i], context);
+            }
+        }
+    }
+    private static int getScanFileAge(String fileName, Context context) {
+        String header = getFileHeader(fileName, context);
+
+        String fileDate = header.split("_", 2)[1].split("\n", 2)[0];
+        int fileMonth = Integer.getInteger(fileDate.split(" ", 2)[1].split("/", 3)[1]);
+        int fileYear = Integer.getInteger(fileDate.split(" ", 2)[1].split("/", 3)[2]);
+
+        String currentDate = getDateString();
+        int currentMonth = Integer.getInteger(currentDate.split(" ", 2)[1].split("/", 3)[1]);
+        int currentYear = Integer.getInteger(currentDate.split(" ", 2)[1].split("/", 3)[2]);
+
+        int monthsOld = (currentYear - fileYear)*12 + (currentMonth - fileMonth);
+
+        return monthsOld;
+    }*/
     public static void deleteScanIndex(Context context) {
+        String[] index = getIndexArray(context);
+        for(int i = 0; i < index.length; i++) {
+            deleteFile(index[i], context);
+        }
         deleteFile(SCAN_FILE_INDEX_NAME, context);
     }
     /**
@@ -463,7 +500,7 @@ public class FileIO {
 
     }
 
-    public static HashMap<String, String> getXmlHashMap(String fileName, Context context) {
+    /*public static HashMap<String, String> getXmlHashMap(String fileName, Context context) {
         HashMap<String, String> xmlHashMap = new HashMap<>();
         String fileData = readFile(context, fileName);
         try {
@@ -485,7 +522,7 @@ public class FileIO {
             e.printStackTrace();
         }
         return xmlHashMap;
-    }
+    }*/
     /**
      * Returns an array representation of the translated main menu. I.E:
      * [0] = Scan
@@ -527,6 +564,7 @@ public class FileIO {
      * @param context
      */
     public static void deleteScanInIndex(String scanName, Context context) {
+
         String indexData = readFile(context, SCAN_FILE_INDEX_NAME);
         String newIndexData = "";
 
@@ -536,30 +574,12 @@ public class FileIO {
         for(int i = 0; i < index.length; i++) {
             if(!index[i].equals(scanName)) {
                 newIndex.add(index[i] + "\n");
-                /*
-                if(i != 0) {
-                    //newIndex.add("\n" + index[i]);
-
-                } else {
-                    newIndex.add(index[i]);
-                }*/
             }
         }
 
         for(int i = 0; i < newIndex.size(); i++) {
             newIndexData = newIndexData + newIndex.get(i);
         }
-
-        /*if(getIndexArray(context)[0].equals() ) {
-            fileNameNewLine = "\n" + fileName;
-        } else {
-            //dont add \n if no scanTextView in index
-            fileNameNewLine = fileName;
-        }*/
-
-        //one scan left
-        //newIndexData = indexData.replace(scanName + "\n", "");
-        //newIndexData = indexData.replace("\n" + scanName, "");
 
         //not sure if needed to delete index
         File scanIndex = new File(context.getFilesDir(), SCAN_FILE_INDEX_NAME);
@@ -573,12 +593,10 @@ public class FileIO {
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
-            /*SharedPreferences prefs = context.getSharedPreferences(SharedPreferencesIO.PREF_OUR_PILLS_TALK, Context.MODE_PRIVATE);
-            int indexSize = prefs.getInt(SharedPreferencesIO.SCAN_INDEX_SIZE, 0);
-            SharedPreferences.Editor editor = prefs.edit();
-            editor.putInt(SharedPreferencesIO.SCAN_INDEX_SIZE, indexSize - 1);
-            editor.commit();*/
+
         }
+
+        deleteFile(scanName, context);
     }
 
     /**
@@ -685,7 +703,7 @@ public class FileIO {
         }
     }
 
-    private static boolean isPrescriptionScanXML(String fileBody) {
+    public static boolean isPrescriptionScanXML(String fileBody) {
         return fileBody.startsWith("<prescription>");
     }
     /**
@@ -740,6 +758,32 @@ public class FileIO {
         return parseXml.get(DRUG_NAME_TAG).replace("+", " ") + "\n\n" + parseXml.get(PAT_NAME_TAG) + ".\n" + parseXml.get(EXP_INSTRUC_TAG) +".";
     }
 
+    public static String getDrugName(String fileName, Context context) {
+        String fileData = "";
+        try {
+            InputStream in = new BufferedInputStream(context.openFileInput(fileName));
+            StringWriter writer = new StringWriter();
+            IOUtils.copy(in, writer);
+            in.close();
+            fileData = writer.toString();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        String fileBody = fileData.split("\n\n", 2)[1];
+
+        if(isPrescriptionScanXML(fileBody)) {
+             return getXMLQRScanMap(fileBody).get(DRUG_NAME_TAG).replace("+", " ").split(" ")[0];
+        } else {
+            return "";
+        }
+
+       // String filePlain = getFileBody(fileName, context);
+        //String drugName =  filePlain.split("\n\n")[0];
+        //return drugName;
+    }
+
+
 
     /**
      * Prints a toast to screen of the contents of the file name provided
@@ -759,6 +803,25 @@ public class FileIO {
         }
         catch (IOException e) {
             e.printStackTrace();
+        }
+        return fileData;
+    }
+
+    public static String readFile(Context context, String fileName, boolean stripHead) {
+        String fileData = "";
+        try {
+            InputStream in = new BufferedInputStream(context.openFileInput(fileName));
+            StringWriter writer = new StringWriter();
+            IOUtils.copy(in, writer);
+            fileData = writer.toString();
+            //Toast.makeText(context, fileData, Toast.LENGTH_LONG).show();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        if(stripHead && fileData.contains("\n\n")) {
+            return fileData.split("\n\n", 2)[1];
         }
         return fileData;
     }
