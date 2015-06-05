@@ -59,6 +59,19 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
         setOnClickListeners();
     }
 
+    private void loadFakeScans() {
+        FileIO.saveQRScan("<prescription> <pat_name>Mark Warrie</pat_name> <drug_name>Abisart</drug_name> <exp_instruc>Take one tablet once daily.</exp_instruc> <script_id>1010100</script_id> <pharm_name>Mac Pharmacy</pharm_name> </prescription>", getApplicationContext());
+        FileIO.saveQRScan("<prescription> <pat_name>Mark Warrie</pat_name> <drug_name>Abisart</drug_name> <exp_instruc>Take one tablet once daily.</exp_instruc> <script_id>1010100</script_id> <pharm_name>Mac Pharmacy</pharm_name> </prescription>", getApplicationContext());
+        FileIO.saveQRScan("<prescription> <pat_name>Mark Warrie</pat_name> <drug_name>Ialex (AS)</drug_name> <exp_instruc>Take one tablet twice a day immediately before or after food.</exp_instruc> <script_id>2103123</script_id> <pharm_name>Mac Pharmacy</pharm_name> </prescription>", getApplicationContext());
+        FileIO.saveQRScan("<prescription> <pat_name>Mark Warrie</pat_name> <drug_name>Elaprase</drug_name> <exp_instruc>Take two tablets once a day daily</exp_instruc> <script_id>3214</script_id> <pharm_name>Mac Pharmacy</pharm_name> </prescription>", getApplicationContext());
+        FileIO.saveQRScan("<prescription> <pat_name>Al Pillstork</pat_name> <drug_name>Jardiance</drug_name> <exp_instruc>Take one tablet once a day.</exp_instruc> <script_id>1234</script_id> <pharm_name>Mac Pharmacy</pharm_name> </prescription>", getApplicationContext());
+        FileIO.saveQRScan("<prescription> <pat_name>Mark Warrie</pat_name> <drug_name>Abisart</drug_name> <exp_instruc>Take one tablet once daily.</exp_instruc> <script_id>1010100</script_id> <pharm_name>Mac Pharmacy</pharm_name> </prescription>", getApplicationContext());
+        FileIO.saveQRScan("<prescription> <pat_name>Mark Warrie</pat_name> <drug_name>Abisart</drug_name> <exp_instruc>Take one tablet once daily.</exp_instruc> <script_id>1010100</script_id> <pharm_name>Mac Pharmacy</pharm_name> </prescription>", getApplicationContext());
+        FileIO.saveQRScan("<prescription> <pat_name>Al Pillstork</pat_name> <drug_name>Cadivast</drug_name> <exp_instruc>Take one tablet once daily. *Do not crush or chew tablet</exp_instruc> <script_id>10101004</script_id> <pharm_name>>Mac Pharmacy</pharm_name> </prescription>", getApplicationContext());
+        FileIO.saveQRScan("<prescription> <pat_name>Mark Warrie</pat_name> <drug_name>Elaprase</drug_name> <exp_instruc>Take two tablets once a day daily</exp_instruc> <script_id>3214</script_id> <pharm_name>Mac Pharmacy</pharm_name> </prescription>", getApplicationContext());
+        FileIO.saveQRScan("<prescription> <pat_name>Al Pillstork</pat_name> <drug_name>Jardiance</drug_name> <exp_instruc>Take one tablet once a day.</exp_instruc> <script_id>1234</script_id> <pharm_name>Mac Pharmacy</pharm_name> </prescription>", getApplicationContext());
+    }
+
     private void showEngText(boolean showEngText) {
         if(showEngText) {
             emergencyEngText.setVisibility(View.VISIBLE);

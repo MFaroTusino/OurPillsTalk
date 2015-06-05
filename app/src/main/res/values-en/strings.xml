@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Our Pills Talk v2</string>
+    <string name="app_name">Our Pills Talk</string>
     <string name="action_settings">Settings</string>
     <string name="lastScan">Last Scan</string>
     <string name="help_me">Help</string>

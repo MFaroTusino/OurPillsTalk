@@ -52,19 +52,23 @@ public class ZBarScannerActivity extends Activity implements ZBarScannerView.Res
             Vibrator v = (Vibrator) getApplicationContext().getSystemService(Context.VIBRATOR_SERVICE);
             v.vibrate(500);
 
-            //save scan to file and pass the file name to the Scan Activity (the last scan of the index)
-
-            FileIO.saveQRScan(scanResult, getApplicationContext());
+            //save scan to file if Our Pills Talk QR code and pass the file name to the Scan Activity (the last scan of the index)
             Intent showScan = new Intent(this, ScanActivity.class);
-            String[] index = FileIO.getIndexArray(getApplicationContext());
-            String indexData = "";
-            for (int i = 0; i < index.length; i++) {
-                indexData = indexData + index[i];
+            if(FileIO.isPrescriptionScanXML(scanResult)) {
+                FileIO.saveQRScan(scanResult, getApplicationContext());
+
+                String[] index = FileIO.getIndexArray(getApplicationContext());
+                String indexData = "";
+                for (int i = 0; i < index.length; i++) {
+                    indexData = indexData + index[i];
+                }
+                showScan.putExtra("fileName", index[index.length - 1]);
+
+            } else {
+                showScan.putExtra("fileName", "-1");
             }
 
-            showScan.putExtra("fileName", index[index.length - 1]);
             startActivity(showScan);
-
 
             Log.v("Scan result", rawResult.getContents()); // Prints scan results
             Log.v("Bar code Format", rawResult.getBarcodeFormat().getName()); // Prints the scan format (qrcode, pdf417 etc.)
