@@ -65,6 +65,7 @@ public class ZBarScannerActivity extends Activity implements ZBarScannerView.Res
                 showScan.putExtra("fileName", index[index.length - 1]);
 
             } else {
+                //fileName = -1, prompt user to scan a Our Pills Talk QR code
                 showScan.putExtra("fileName", "-1");
             }
 

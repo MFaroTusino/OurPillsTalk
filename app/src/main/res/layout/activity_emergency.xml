@@ -57,7 +57,7 @@
                 android:layout_height="fill_parent"
                 android:id="@+id/userInfoDisplay"
                 android:layout_weight="1"
-                android:textSize="25sp"
+                android:textSize="25dp"
                 android:text="no user info entered..."
                 android:maxLines="30"
                 android:textColor="#000" />

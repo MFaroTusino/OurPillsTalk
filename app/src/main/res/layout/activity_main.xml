@@ -52,12 +52,12 @@
                     android:gravity="center"
                     android:layout_width="fill_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="3"
+                    android:layout_weight="4"
                     android:scaleType="fitXY"
                     android:textColor="#FFFFFF"
                     android:text="@string/ButtonTextScan"
                     android:layout_margin="0dp"
-                    android:textSize="40sp"
+                    android:textSize="40dp"
 
                     android:clickable="true"
                     android:shadowColor="#000"
@@ -75,7 +75,7 @@
                     android:visibility="gone"
                     android:layout_gravity="center_horizontal"
                     android:textColor="#FFFFFF"
-                    android:layout_weight="1" />
+                    android:layout_weight="2" />
             </LinearLayout>
         </LinearLayout>
 
@@ -117,10 +117,10 @@
 
                     android:text="@string/scanHistory"
                     android:clickable="true"
-                    android:textSize="32sp"
+                    android:textSize="30dp"
                     android:textColor="#FFFFFF"
                     android:autoText="false"
-                    android:layout_weight="6"
+                    android:layout_weight="8"
                     android:shadowColor="#000"
                     android:shadowRadius="15"
                     android:gravity="center"
@@ -131,7 +131,7 @@
                     android:layout_height="0dp"
                     android:text="History"
                     android:id="@+id/histEngText"
-                    android:layout_weight="3"
+                    android:layout_weight="5"
                     android:visibility="gone"
                     android:layout_gravity="center_horizontal"
                     android:textColor="#FFFFFF" />
@@ -164,13 +164,13 @@
                     android:id="@+id/settingsButtonText"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="6"
+                    android:layout_weight="8"
                     android:scaleType="fitXY"
                     android:gravity="center"
 
                     android:clickable="true"
 
-                    android:textSize="32sp"
+                    android:textSize="30dp"
                     android:textColor="#FFFFFF"
                     android:text="@string/action_settings"
                     android:shadowColor="#000"
@@ -182,7 +182,7 @@
                     android:layout_height="0dp"
                     android:text="Settings"
                     android:id="@+id/settEngText"
-                    android:layout_weight="3"
+                    android:layout_weight="5"
                     android:visibility="gone"
                     android:layout_gravity="center_horizontal"
                     android:textColor="#FFFFFF" />
@@ -226,9 +226,9 @@
                     android:id="@+id/emergencyText"
                     android:clickable="true"
                     android:gravity="center"
-                    android:textSize="32sp"
+                    android:textSize="30dp"
                     android:textColor="#FFF"
-                    android:layout_weight="6"
+                    android:layout_weight="8"
                     android:shadowColor="#000"
                     android:shadowRadius="15"
                     android:singleLine="true" />
@@ -238,7 +238,7 @@
                     android:layout_height="0dp"
                     android:text="Emergency"
                     android:id="@+id/emgEngText"
-                    android:layout_weight="3"
+                    android:layout_weight="5"
                     android:visibility="gone"
                     android:layout_gravity="center_horizontal"
                     android:textColor="#FFFFFF" />
@@ -270,12 +270,12 @@
                     android:id="@+id/helpButtonText"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="6"
+                    android:layout_weight="8"
                     android:scaleType="fitXY"
                     android:gravity="center"
                     android:clickable="true"
                     android:text="@string/help_me"
-                    android:textSize="32sp"
+                    android:textSize="30dp"
                     android:textColor="#FFFFFF"
                     android:shadowColor="#000"
                     android:shadowRadius="10"
@@ -289,7 +289,7 @@
                     android:visibility="gone"
                     android:layout_gravity="center_horizontal"
                     android:textColor="#FFFFFF"
-                    android:layout_weight="3" />
+                    android:layout_weight="5" />
             </LinearLayout>
         </LinearLayout>
 

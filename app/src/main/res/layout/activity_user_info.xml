@@ -15,8 +15,8 @@
             android:layout_height="wrap_content"
             android:text="Please enter some information about yourself."
             android:id="@+id/textView8"
-            android:textSize="30sp"
-            android:paddingBottom="10sp"
+            android:textSize="30dp"
+            android:paddingBottom="10dp"
             android:gravity="center" />
 
         <EditText
@@ -26,7 +26,7 @@
             android:ems="10"
             android:id="@+id/nameEditText"
             android:layout_gravity="bottom"
-            android:textSize="25sp"
+            android:textSize="20dp"
             android:hint="Full Name"
             android:capitalize="words" />
 
@@ -36,7 +36,7 @@
             android:inputType="textCapWords|textPostalAddress"
             android:ems="10"
             android:id="@+id/cityEditText"
-            android:textSize="25sp"
+            android:textSize="20dp"
             android:hint="City/Suburb"
             android:capitalize="words" />
 
@@ -46,7 +46,7 @@
             android:inputType="textCapWords|textPostalAddress"
             android:ems="10"
             android:id="@+id/stateEditText"
-            android:textSize="25sp"
+            android:textSize="20dp"
             android:hint="State"
             android:capitalize="words" />
 
@@ -56,7 +56,7 @@
             android:inputType="phone|number"
             android:ems="10"
             android:id="@+id/emrgencyContactEditText"
-            android:textSize="25sp"
+            android:textSize="20dp"
             android:hint="Emergency Contact No." />
 
         <EditText
@@ -64,7 +64,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/currentMedicationEditText"
             android:inputType="text|textCapWords"
-            android:textSize="25sp"
+            android:textSize="20dp"
             android:hint="Current medications" />
 
         <EditText
@@ -74,7 +74,7 @@
             android:editable="true"
             android:capitalize="words"
             android:hint="Allergies"
-            android:textSize="25sp"
+            android:textSize="20dp"
             android:inputType="text|textCapWords" />
 
     </LinearLayout>

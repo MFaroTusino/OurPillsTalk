@@ -17,13 +17,13 @@
 
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="100sp"
+            android:layout_height="100dp"
             android:text="File Body"
             android:id="@+id/scanPreviewViewText"
             android:layout_gravity="center_horizontal"
             android:clickable="true"
             android:minWidth="500dp"
-            android:textSize="28sp"
+            android:textSize="28dp"
             android:background="?android:attr/selectableItemBackground"
             android:layout_weight="4" />
 

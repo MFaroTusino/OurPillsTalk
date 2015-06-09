@@ -87,8 +87,8 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="appcompat-v7-22.1.1" level="project" />
     <orderEntry type="library" exported="" name="core-1.7" level="project" />
-    <orderEntry type="library" exported="" name="json-simple-1.1" level="project" />
     <orderEntry type="library" exported="" name="microsoft-translator-java-api-0.6.2" level="project" />
+    <orderEntry type="library" exported="" name="json-simple-1.1" level="project" />
     <orderEntry type="library" exported="" name="zbar-1.7" level="project" />
     <orderEntry type="library" exported="" name="commons-io-2.4" level="project" />
     <orderEntry type="library" exported="" name="support-v4-22.1.1" level="project" />

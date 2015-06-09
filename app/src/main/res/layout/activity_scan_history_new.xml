@@ -17,7 +17,7 @@
             android:id="@+id/searchScanEditText"
             android:hint="Search for scan..."
             android:layout_alignParentTop="true"
-            android:textSize="25sp"
+            android:textSize="25dp"
             android:inputType="textPersonName" />
 
         <Button

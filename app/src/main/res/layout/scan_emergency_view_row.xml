@@ -20,7 +20,7 @@
             android:layout_weight="4"
             android:minLines="3"
             android:minWidth="500dp"
-            android:textSize="30sp"
+            android:textSize="30dp"
             android:maxLines="3" />
 
     </LinearLayout>

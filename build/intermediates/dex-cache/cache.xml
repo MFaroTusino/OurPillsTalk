@@ -30,6 +30,20 @@
         <dex dex="/Users/Elliott/Documents/Projects/OurPillsTalk/app/build/intermediates/pre-dexed/debug/classes-23bd528a36c36ca3d31b44080bdaf2caad466bb2.jar" />
     </item>
     <item
+        jar="/Users/Elliott/Documents/Projects/OurPillsTalk/app/libs/commons-io-2.4.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="b1b6ea3b7e4aa4f492509a4952029cd8e48019ad">
+        <dex dex="/Users/Elliott/Documents/Projects/OurPillsTalk/app/build/intermediates/pre-dexed/debug/commons-io-2.4-f3e9c6f0a66e1767f1efb43618ee0581631ab43f.jar" />
+    </item>
+    <item
+        jar="/Users/Elliott/.gradle/caches/modules-2/files-2.1/com.memetix/microsoft-translator-java-api/0.6.2/2b9686e4d86b1565f3fa7a5060246b40ba96e447/microsoft-translator-java-api-0.6.2.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="2b9686e4d86b1565f3fa7a5060246b40ba96e447">
+        <dex dex="/Users/Elliott/Documents/Projects/OurPillsTalk/app/build/intermediates/pre-dexed/debug/microsoft-translator-java-api-0.6.2-08b463d22ad416ea78cb303b1294d7ab729d8b0f.jar" />
+    </item>
+    <item
         jar="/Users/Elliott/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/22.1.1/support-annotations-22.1.1.jar"
         jumboMode="false"
         revision="21.1.2"
@@ -44,13 +58,6 @@
         <dex dex="/Users/Elliott/Documents/Projects/OurPillsTalk/app/build/intermediates/pre-dexed/debug/classes-c9366f86f94fc0f5aa51dcd2ce0bd2ac79a87277.jar" />
     </item>
     <item
-        jar="/Users/Elliott/Documents/Projects/OurPillsTalk/app/libs/commons-io-2.4.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="b1b6ea3b7e4aa4f492509a4952029cd8e48019ad">
-        <dex dex="/Users/Elliott/Documents/Projects/OurPillsTalk/app/build/intermediates/pre-dexed/debug/commons-io-2.4-f3e9c6f0a66e1767f1efb43618ee0581631ab43f.jar" />
-    </item>
-    <item
         jar="/Users/Elliott/Documents/Projects/OurPillsTalk/app/build/intermediates/exploded-aar/me.dm7.barcodescanner/core/1.7/classes.jar"
         jumboMode="false"
         revision="21.1.2"
@@ -63,13 +70,6 @@
         revision="21.1.2"
         sha1="a3ff3c506644c820eb2bdf06e8339f72be578551">
         <dex dex="/Users/Elliott/Documents/Projects/OurPillsTalk/app/build/intermediates/pre-dexed/debug/classes-594296af1182ea63c30c49b9a56dad604717fe83.jar" />
-    </item>
-    <item
-        jar="/Users/Elliott/.gradle/caches/modules-2/files-2.1/com.memetix/microsoft-translator-java-api/0.6.2/2b9686e4d86b1565f3fa7a5060246b40ba96e447/microsoft-translator-java-api-0.6.2.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="2b9686e4d86b1565f3fa7a5060246b40ba96e447">
-        <dex dex="/Users/Elliott/Documents/Projects/OurPillsTalk/app/build/intermediates/pre-dexed/debug/microsoft-translator-java-api-0.6.2-08b463d22ad416ea78cb303b1294d7ab729d8b0f.jar" />
     </item>
 
 </items>

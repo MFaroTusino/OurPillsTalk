@@ -10,7 +10,7 @@
         android:id="@+id/lastScanScrollView"
         android:layout_gravity="center_horizontal"
         android:layout_weight="8"
-        android:layout_margin="1sp"
+        android:layout_margin="1dp"
         >
 
         <TextView
@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:text="You currently have no last scan"
             android:id="@+id/lastScanTextView"
-            android:textSize="40sp"
+            android:textSize="40dp"
             android:gravity="center"
             android:padding="1sp" />
     </ScrollView>
@@ -36,8 +36,8 @@
             android:text="Stop"
             android:id="@+id/stopButton"
             android:layout_weight="1"
-            android:layout_margin="1sp"
-            android:textSize="25sp"
+            android:layout_margin="1dp"
+            android:textSize="20dp"
             android:backgroundTint="#FFe84c3d" />
 
         <Button
@@ -46,8 +46,8 @@
             android:text="CMI"
             android:id="@+id/cmiButton"
             android:layout_weight="1"
-            android:layout_margin="1sp"
-            android:textSize="25sp"
+            android:layout_margin="1dp"
+            android:textSize="20dp"
             android:backgroundTint="#ff3598db" />
 
         <Button
@@ -56,8 +56,8 @@
             android:text="Replay"
             android:id="@+id/playButton"
             android:layout_weight="1"
-            android:layout_margin="1sp"
-            android:textSize="25sp"
+            android:layout_margin="1dp"
+            android:textSize="20dp"
             android:backgroundTint="#FF1bbc9b" />
     </LinearLayout>
 
